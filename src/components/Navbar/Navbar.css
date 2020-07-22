@@ -1,0 +1,41 @@
+.navbar_wrapper {
+  display: flex;
+  list-style: none;
+  justify-content: flex-end;
+  margin-right: 45px;
+  padding: 2rem;
+  align-items: center;
+}
+.navbar_element {
+  margin: 0 20px 0 20px;
+}
+.navbar_link {
+  text-decoration: none;
+  color: black;
+}
+.nav__card {
+  position: relative;
+  background-color: rgb(241, 43, 16);
+  border-radius: 50%;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  border: none;
+  outline: none;
+}
+.nav__card__img {
+  position: absolute;
+  z-index: 22;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+}
+
+.cartCouter {
+  position: absolute;
+  left: 50%;
+  top: 65%;
+  transform: translate(-50%, -60%);
+}

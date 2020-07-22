@@ -1,0 +1,17 @@
+.goBackButton {
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: red;
+  width: 40px;
+  height: 40px;
+}
+
+.goBackLink {
+  width: 20px;
+  height: 20px;
+}
+.goBackText {
+  color: black;
+}
