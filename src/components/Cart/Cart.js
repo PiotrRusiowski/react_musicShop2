@@ -5,6 +5,7 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import RootContext from "../../context/context";
 import "./Cart.css";
+import PaypalButton from "../PayPalButton/PayPalButton";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -34,6 +35,8 @@ const Cart = () => {
     increseProductQuantity,
     decreseProductQuantity,
     total,
+    clearCart,
+    resetCartCounter,
   } = context;
 
   return (
@@ -100,7 +103,20 @@ const Cart = () => {
                 );
               })}
             </ul>
-            <h5>{total}$</h5>
+
+            {cart.length <= 0 ? (
+              ""
+            ) : (
+              <>
+                <h5>{total}$</h5>
+                <PaypalButton
+                  total={total}
+                  clearCart={clearCart}
+                  resetCartCounter={resetCartCounter}
+                  handleCartClose={handleCartClose}
+                />
+              </>
+            )}
           </div>
         </Fade>
       </Modal>

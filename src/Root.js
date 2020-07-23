@@ -54,6 +54,7 @@ const Root = () => {
         product.productQuantity = 1;
       }
     });
+
     setCart([...new Set([...filteredCartArray])]);
   };
 
@@ -168,6 +169,7 @@ const Root = () => {
   // };
 
   const handleDuplicateInCart = (name) => {
+    /////cartcounter??
     if (cart.length !== 0) {
       const tempCart = [...cart];
       tempCart.forEach((product) => {
@@ -178,6 +180,7 @@ const Root = () => {
 
       setCart([...new Set([...tempCart])]);
     }
+    console.log(name);
   };
 
   const sortData = () => {
@@ -215,7 +218,15 @@ const Root = () => {
   };
   useEffect(() => {
     calculateCartTotals();
-  }, [cart, cartCounter]);
+  }, [cart, cartCounter]); //////????
+
+  const clearCart = () => {
+    setCart([]);
+  };
+
+  const resetCartCounter = () => {
+    setCartCounter(0);
+  };
 
   return (
     <BrowserRouter>
@@ -240,6 +251,8 @@ const Root = () => {
           handleCartClose,
           filterMenager,
           decreseProductQuantity,
+          clearCart,
+          resetCartCounter,
         }}
       >
         <Switch>
