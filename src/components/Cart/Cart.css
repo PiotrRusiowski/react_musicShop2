@@ -23,3 +23,8 @@
   justify-content: space-around;
   flex-basis: 20%;
 }
+.totalPrice {
+  padding: 10px;
+  text-align: right;
+  font-size: 15px;
+}

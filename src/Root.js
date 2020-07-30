@@ -7,17 +7,98 @@ import Home from "./views/Home/Home";
 import Products from "./views/Products/Products";
 import { productsDataArray } from "./localData/productsDataArray";
 import SingleProduct from "./views/SingleProduct/SingleProduct";
+import { client } from "./contentfulData/contentfulData";
 
 const Root = () => {
+  const getCartFromLocalStorage = () => {
+    let localStorageCart;
+    if (localStorage.getItem("cart")) {
+      localStorageCart = JSON.parse(localStorage.getItem("cart"));
+    } else {
+      localStorageCart = [];
+    }
+
+    return localStorageCart;
+  };
+
+  const getCartCounterFromLocalStorage = () => {
+    let localStorageCartCounter;
+    if (localStorage.getItem("cartCounter")) {
+      localStorageCartCounter = JSON.parse(localStorage.getItem("cartCounter"));
+    } else {
+      localStorageCartCounter = 0;
+    }
+
+    return localStorageCartCounter;
+  };
+
   const [isCartOpen, setCartOpen] = useState(false);
-  const [cart, setCart] = useState([...new Set([])]);
-  const [cartCounter, setCartCounter] = useState(0);
-  const [products, setProducts] = useState([...productsDataArray]);
+  const [cart, setCart] = useState(getCartFromLocalStorage());
+  const [cartCounter, setCartCounter] = useState(
+    getCartCounterFromLocalStorage()
+  );
+  const [products, setProducts] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [priceValue, setPriceValue] = useState(2000);
   const [maxValue, setMaxValue] = useState(0);
   const [minValue, setMinValue] = useState(0);
   const [total, setTotal] = useState(0);
+
+  const setContentfulData = (data) => {
+    if (data.length !== 0) {
+      const products = data.map((item) => {
+        const productImage = item.fields.productImage.fields.file.url;
+        const productId = item.sys.id;
+        const productDesc = item.fields.productDesc;
+        const productPrice = item.fields.productPrice;
+        const productName = item.fields.productName;
+        const productQuantity = item.fields.productQuantity;
+
+        const product = {
+          productId,
+          productName,
+          productImage,
+          productPrice,
+          productQuantity,
+          productDesc,
+        };
+        return product;
+      });
+
+      console.log(products);
+
+      setProducts(products);
+    }
+  };
+
+  const getContentfulData = () => {
+    client
+      .getEntries({
+        content_type: "product",
+      })
+      .then((response) => setContentfulData(response.items))
+      .catch((error) => console.error(error));
+  };
+
+  const setCartToLocalStorage = () => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
+
+  const setCartCounterToLocalStorage = () => {
+    localStorage.setItem("cartCounter", JSON.stringify(cartCounter));
+  };
+
+  //get contentful data
+  useEffect(() => {
+    getContentfulData();
+  }, []);
+
+  //set cart to local storage
+  useEffect(() => {
+    setCartToLocalStorage();
+    setCartCounterToLocalStorage();
+  }, [cart, cartCounter]);
+
   const setMaxAndMinPrice = () => {
     let maxPrice = Math.max(...products.map((product) => product.productPrice));
     setPriceValue(maxPrice);
@@ -169,7 +250,6 @@ const Root = () => {
   // };
 
   const handleDuplicateInCart = (name) => {
-    /////cartcounter??
     if (cart.length !== 0) {
       const tempCart = [...cart];
       tempCart.forEach((product) => {
@@ -180,7 +260,6 @@ const Root = () => {
 
       setCart([...new Set([...tempCart])]);
     }
-    console.log(name);
   };
 
   const sortData = () => {
@@ -218,7 +297,7 @@ const Root = () => {
   };
   useEffect(() => {
     calculateCartTotals();
-  }, [cart, cartCounter]); //////????
+  }, [cart, cartCounter]);
 
   const clearCart = () => {
     setCart([]);

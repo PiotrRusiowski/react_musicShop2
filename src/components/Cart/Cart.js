@@ -108,7 +108,7 @@ const Cart = () => {
               ""
             ) : (
               <>
-                <h5>{total}$</h5>
+                <h5 className="totalPrice">Total: {total}$</h5>
                 <PaypalButton
                   total={total}
                   clearCart={clearCart}

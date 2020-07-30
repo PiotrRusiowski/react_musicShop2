@@ -28,7 +28,7 @@ const PaypalButton = ({
 
   const client = {
     sandbox:
-      "AUzxVoKUbs4ig3DWxaGHyfvnq243wp6HPA9mqz_z_oXfpWUJ-2KQyHp2Jb-kNZfFEEJeBpbtfZfVAHek",
+      "AYZOyc6kYf-L_lo7BHowitiYK5zAO0UxrOsK9NKBNmvQDrs95kEosHu-U2F48jAYx9ZdonDGh8kzJqk2",
     production: "YOUR-PRODUCTION-APP-ID",
   };
 
