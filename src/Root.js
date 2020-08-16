@@ -17,10 +17,8 @@ const Root = () => {
     } else {
       localStorageCart = [];
     }
-
     return localStorageCart;
   };
-
   const getCartCounterFromLocalStorage = () => {
     let localStorageCartCounter;
     if (localStorage.getItem("cartCounter")) {
@@ -28,31 +26,32 @@ const Root = () => {
     } else {
       localStorageCartCounter = 0;
     }
-
     return localStorageCartCounter;
   };
-
   const [isCartOpen, setCartOpen] = useState(false);
   const [cart, setCart] = useState(getCartFromLocalStorage());
   const [cartCounter, setCartCounter] = useState(
     getCartCounterFromLocalStorage()
   );
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchValue, setSearchValue] = useState("");
-  const [priceValue, setPriceValue] = useState(2000);
+  const [priceValue, setPriceValue] = useState(0);
+  const [categoryValue, setCategoryValue] = useState("all");
   const [maxValue, setMaxValue] = useState(0);
   const [minValue, setMinValue] = useState(0);
   const [total, setTotal] = useState(0);
 
   const setContentfulData = (data) => {
     if (data.length !== 0) {
-      const products = data.map((item) => {
+      const contentfulProducts = data.map((item) => {
         const productImage = item.fields.productImage.fields.file.url;
         const productId = item.sys.id;
         const productDesc = item.fields.productDesc;
         const productPrice = item.fields.productPrice;
         const productName = item.fields.productName;
         const productQuantity = item.fields.productQuantity;
+        const productCategory = item.fields.productCategory;
 
         const product = {
           productId,
@@ -61,13 +60,23 @@ const Root = () => {
           productPrice,
           productQuantity,
           productDesc,
+          productCategory,
         };
         return product;
       });
 
-      console.log(products);
+      console.log(contentfulProducts);
 
-      setProducts(products);
+      let maxPrice = Math.max(
+        ...contentfulProducts.map((product) => product.productPrice)
+      );
+
+      setPriceValue(maxPrice);
+      console.log(maxPrice);
+      setMaxValue(maxPrice);
+
+      setProducts(contentfulProducts); //Przechowywanie wszystkich produktów
+      setFilteredProducts(contentfulProducts);
     }
   };
 
@@ -79,34 +88,20 @@ const Root = () => {
       .then((response) => setContentfulData(response.items))
       .catch((error) => console.error(error));
   };
-
   const setCartToLocalStorage = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
   };
-
   const setCartCounterToLocalStorage = () => {
     localStorage.setItem("cartCounter", JSON.stringify(cartCounter));
   };
-
-  //get contentful data
-  useEffect(() => {
-    getContentfulData();
-  }, []);
-
-  //set cart to local storage
   useEffect(() => {
     setCartToLocalStorage();
     setCartCounterToLocalStorage();
   }, [cart, cartCounter]);
 
-  const setMaxAndMinPrice = () => {
-    let maxPrice = Math.max(...products.map((product) => product.productPrice));
-    setPriceValue(maxPrice);
-    console.log(maxPrice);
-    setMaxValue(maxPrice);
-  };
+  //get contentful data
   useEffect(() => {
-    setMaxAndMinPrice();
+    getContentfulData();
   }, []);
 
   const handleCartOpen = () => {
@@ -217,24 +212,66 @@ const Root = () => {
 
   const filterMenager = (e) => {
     const name = e.target.name;
+    console.log(products);
 
     const value = e.target.value;
     console.log(name);
+    console.log(value);
     switch (name) {
       case "searchInput":
         setSearchValue(value);
         break;
       case "priceInput":
         setPriceValue(value);
-      default:
         break;
+      case "categoryInput":
+        console.log("Halo");
+        setCategoryValue(value);
+      default:
+        console.log("error");
     }
   };
 
-  /// HERE
   useEffect(() => {
     sortData();
-  }, [searchValue, priceValue]);
+  }, [searchValue, priceValue, categoryValue]);
+
+  const sortData = () => {
+    let tempProducts = [...products];
+
+    //by search input
+    if (searchValue.length > 0) {
+      tempProducts = tempProducts.filter((product) => {
+        let tempSearchInput = searchValue.toLowerCase();
+        let tempProductName = product.productName
+          .toLowerCase()
+          .slice(0, product.productName.length);
+
+        if (tempProductName.includes(tempSearchInput)) {
+          return product;
+        }
+      });
+    }
+
+    //by price
+
+    console.log(priceValue);
+    let tempPrice = parseInt(priceValue);
+    tempProducts = tempProducts.filter(
+      (product) => product.productPrice <= tempPrice
+    );
+
+    // by category
+    if (categoryValue !== "all") {
+      tempProducts = tempProducts.filter(
+        (product) => product.productCategory === categoryValue
+      );
+    }
+
+    setFilteredProducts(tempProducts);
+  };
+
+  /// HERE
 
   // const filterProductsByPrice = () => {
   //   let tempProducts = [...products];
@@ -260,32 +297,6 @@ const Root = () => {
 
       setCart([...new Set([...tempCart])]);
     }
-  };
-
-  const sortData = () => {
-    let tempProducts = [...products];
-
-    //by price
-
-    console.log(priceValue);
-    tempProducts = tempProducts.filter(
-      (product) => product.productPrice <= priceValue
-    );
-
-    //by search input
-    if (searchValue.length > 0) {
-      tempProducts = tempProducts.filter((product) => {
-        let tempSearchInput = searchValue.toLowerCase();
-        let tempProductName = product.productName
-          .toLowerCase()
-          .slice(0, searchValue.length);
-        if (tempSearchInput === tempProductName) {
-          return product;
-        }
-      });
-    }
-
-    setProducts(tempProducts);
   };
 
   const calculateCartTotals = () => {
@@ -332,6 +343,8 @@ const Root = () => {
           decreseProductQuantity,
           clearCart,
           resetCartCounter,
+          categoryValue,
+          filteredProducts,
         }}
       >
         <Switch>

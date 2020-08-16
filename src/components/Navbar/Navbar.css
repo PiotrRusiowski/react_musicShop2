@@ -2,21 +2,24 @@
   display: flex;
   list-style: none;
   justify-content: flex-end;
-  margin-right: 45px;
-  padding: 2rem;
+
   align-items: center;
+  padding: 1rem;
+  background-color: black;
 }
 .navbar_element {
   margin: 0 20px 0 20px;
 }
 .navbar_link {
+  font-weight: 600;
+  letter-spacing: 1px;
   text-decoration: none;
-  color: black;
+  color: rgb(211, 197, 197);
 }
 .nav__card {
   position: relative;
-  background-color: rgb(241, 43, 16);
-  border-radius: 50%;
+  background-color: rgb(211, 197, 197);
+  border-radius: 10%;
   cursor: pointer;
   width: 35px;
   height: 35px;
@@ -38,4 +41,9 @@
   left: 50%;
   top: 65%;
   transform: translate(-50%, -60%);
+  font-weight: bold;
+}
+.logo {
+  height: 50px;
+  margin-right: 750px;
 }
