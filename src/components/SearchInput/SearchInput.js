@@ -6,16 +6,17 @@ const SearchInput = () => {
   const { searchValue, filterMenager, filerProductBySearchInput } = context;
 
   return (
-    <>
-      <span className="inputIcon"></span>
+    <div className="searchinput__wraper">
+      <div className="inputIcon"></div>
       <input
         className="searchInput"
         type="text"
         name="searchInput"
         value={searchValue}
         onChange={filterMenager}
+        placeholder="search..."
       />
-    </>
+    </div>
   );
 };
 

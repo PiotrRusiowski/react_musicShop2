@@ -1,6 +1,6 @@
 .productsFilterMenu {
   display: flex;
-
-  height: 35px;
-  background-color: #1877f2;
+  background-color: #599ef8;
+  box-shadow: 10px 0px 10px 0px rgba(0.5, 0, 0, 0.7);
+  /* background-color: #bc0524; */
 }
