@@ -31,7 +31,7 @@ const CategoryFilter = () => {
         className={classes.selectEmpty}
         inputProps={{ "aria-label": "Without label" }}
       >
-        <MenuItem value={"all"}>all</MenuItem>
+        <MenuItem value={"all"}>category: all</MenuItem>
         <MenuItem value={"mixer"}>mixer</MenuItem>
         <MenuItem value={"console"}>console</MenuItem>
         <MenuItem value={"headphones"}>headphones</MenuItem>

@@ -17,8 +17,9 @@
 }
 
 .navbar_link {
-  font-weight: 600;
-  letter-spacing: 1px;
+  font-weight: bold;
+  font-size: 15px;
+  letter-spacing: 3px;
   text-decoration: none;
   color: rgb(211, 197, 197);
   position: relative;
@@ -47,7 +48,7 @@
   left: -20%;
 }
 .navbar_link:active {
-  color: red;
+  /* color: red; */
 }
 .nav__card {
   position: relative;

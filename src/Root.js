@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RootContext from "./context/context";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { GoogleMap, withScriptjs, withGoogleMap } from "google-maps-react";
 import About from "./views/About/About";
 import Contact from "./views/Contact/Contact";
 import Home from "./views/Home/Home";
@@ -8,6 +9,9 @@ import Products from "./views/Products/Products";
 import { productsDataArray } from "./localData/productsDataArray";
 import SingleProduct from "./views/SingleProduct/SingleProduct";
 import { client } from "./contentfulData/contentfulData";
+import img1 from "./assets/images/slider/slider_1.jpg";
+import img2 from "./assets/images/slider/slider_2.jpg";
+import img3 from "./assets/images/slider/slider_3.jpg";
 
 const Root = () => {
   const getCartFromLocalStorage = () => {
@@ -41,6 +45,35 @@ const Root = () => {
   const [maxValue, setMaxValue] = useState(0);
   const [minValue, setMinValue] = useState(0);
   const [total, setTotal] = useState(0);
+  const [banerImg, setBanerImg] = useState(0);
+  const [banerArray, setBanerArray] = useState([img1, img2, img3]);
+  const [imgCounter, setImgCounter] = useState(0);
+
+  const map = () => {
+    return (
+      <GoogleMap
+        defaultZoom={10}
+        defaultCenter={{ lat: 52.237316, lng: 21.008229 }}
+      />
+    );
+  };
+  const number = 1;
+
+  useEffect(() => {
+    // let counter = 0;    ????
+    setBanerImg(banerArray[imgCounter]);
+
+    const timer = setInterval(() => {
+      setImgCounter(imgCounter + 1);
+      // counter + 1;   ?????
+      console.log(banerImg);
+      if (imgCounter == banerArray.length - 1) {
+        setImgCounter(0);
+      }
+    }, 10000);
+
+    return () => clearInterval(timer);
+  });
 
   const setContentfulData = (data) => {
     if (data.length !== 0) {
@@ -331,6 +364,9 @@ const Root = () => {
           maxValue,
           priceValue,
           total,
+          categoryValue,
+          filteredProducts,
+          banerImg,
           increseProductQuantity,
           handleDuplicateInCart,
           resetFilters,
@@ -343,8 +379,6 @@ const Root = () => {
           decreseProductQuantity,
           clearCart,
           resetCartCounter,
-          categoryValue,
-          filteredProducts,
         }}
       >
         <Switch>

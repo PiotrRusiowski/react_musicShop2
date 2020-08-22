@@ -1,10 +1,13 @@
 import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
+import Form from "../../components/Form/Form";
+import Map from "../../components/Map/Map";
 const Contact = () => {
   return (
     <>
       <Navbar />
-      <h1>Contact</h1>
+      <Map />
+      <Form />
     </>
   );
 };
