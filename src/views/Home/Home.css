@@ -25,20 +25,23 @@
   color: black;
   font-weight: lighter;
   z-index: 5;
+  line-height: 0.8;
+}
+.baner__itmem-titleSmall {
+  font-weight: normal;
 }
 .baner__item-btn {
-  font-size: 16px;
-  font-weight: lighter;
+  font-size: 18px;
+  /* font-weight: bold; */
   letter-spacing: 2px;
-  padding: 12px 37px;
+  padding: 12px 45px;
   background-color: rgba(89, 158, 248, 0.4);
   border: 2px black solid;
   border-radius: 5px;
-
-  margin-top: 10px;
+  margin-top: 20px;
+  cursor: pointer;
 }
 .baner__item-btn:hover {
-  cursor: pointer;
 }
 
 .baner-img {
@@ -55,8 +58,7 @@
   display: flex;
   align-items: center;
   top: 95%;
-  right: 15px;
-  margin: 0 50px;
+  right: 0px;
 }
 .footer__item {
   display: flex;

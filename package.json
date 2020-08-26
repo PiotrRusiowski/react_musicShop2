@@ -16,7 +16,10 @@
     "react-dom": "^16.13.1",
     "react-paypal-express-checkout": "^1.0.5",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "react-supercluster": "^1.0.0",
+    "supercluster": "^7.1.0",
+    "swr": "^0.3.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -13,8 +13,10 @@ const Navbar = () => {
   return (
     <>
       <div className="navbar__wrapper">
-        <img src={logo} alt="logo" className="logo" />
-        <ul className="navbar__list">
+        <div className="container">
+          <img src={logo} alt="logo" className=" logo" />
+        </div>
+        <ul className="navbar__list container">
           <li className="navbar_element">
             <Link to="/" className="navbar_link">
               Home

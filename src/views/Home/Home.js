@@ -15,10 +15,10 @@ const Home = () => {
         <img src={context.banerImg} alt="audio" className="baner-img" />
         <div className="baner__item">
           <h1 className="baner__item-title">Tech.Music</h1>
-          <h4>authorized shop</h4>
+          <h3 className="baner__itmem-titleSmall">authorized shop</h3>
           <button className="baner__item-btn">Products</button>
         </div>
-        <div className="footer">
+        <div className="footer container">
           <div className="footer__item">
             <img src={phone} alt="" className="footer__item-img" />
             <a href="#" className="footer__item-content">

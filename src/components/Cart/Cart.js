@@ -64,11 +64,11 @@ const Cart = () => {
                       alt=""
                       className="cartList__element__img"
                     />
-                    <h3 className="cartList__element__name">
+                    <h2 className="cartList__element__name">
                       {product.productName}
-                    </h3>
+                    </h2>
                     <h4 className="cartList__element__price">
-                      {product.productPrice}
+                      {product.productPrice}$
                     </h4>
                     <div className="cartList__element__BtnGroup">
                       <button

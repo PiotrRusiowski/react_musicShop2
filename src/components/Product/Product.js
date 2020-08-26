@@ -9,8 +9,8 @@ const Product = ({ name, desc, image, price }) => {
 
   return (
     <>
-      <h1 className="product_title">{name}</h1>
-      <h3 className="product_price">{price}$</h3>
+      <h2 className="product_title">{name}</h2>
+      <h4 className="product_price">{price}$</h4>
       <Link
         to={{
           pathname: `/products/${name}`,
@@ -24,7 +24,21 @@ const Product = ({ name, desc, image, price }) => {
         <img className="product_img" src={image} alt="" />
       </Link>
 
-      <p className="product_desc">{desc}</p>
+      <p className="product_desc">
+        {desc.slice(0, 70)}{" "}
+        <Link
+          to={{
+            pathname: `/products/${name}`,
+            state: {
+              name: name,
+              desc: desc,
+              image: image,
+            },
+          }}
+        >
+          <button className="readMore__btn">read more...</button>
+        </Link>
+      </p>
       <button
         onClick={() => {
           handleDuplicateInCart(name);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RootContext from "./context/context";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { GoogleMap, withScriptjs, withGoogleMap } from "google-maps-react";
+
 import About from "./views/About/About";
 import Contact from "./views/Contact/Contact";
 import Home from "./views/Home/Home";
@@ -48,16 +48,6 @@ const Root = () => {
   const [banerImg, setBanerImg] = useState(0);
   const [banerArray, setBanerArray] = useState([img1, img2, img3]);
   const [imgCounter, setImgCounter] = useState(0);
-
-  const map = () => {
-    return (
-      <GoogleMap
-        defaultZoom={10}
-        defaultCenter={{ lat: 52.237316, lng: 21.008229 }}
-      />
-    );
-  };
-  const number = 1;
 
   useEffect(() => {
     // let counter = 0;    ????
@@ -367,6 +357,7 @@ const Root = () => {
           categoryValue,
           filteredProducts,
           banerImg,
+
           increseProductQuantity,
           handleDuplicateInCart,
           resetFilters,

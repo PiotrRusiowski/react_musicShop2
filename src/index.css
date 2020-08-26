@@ -12,3 +12,6 @@ html {
 body {
   font-size: 1.6rem;
 }
+.container {
+  margin: 0px 25px;
+}
