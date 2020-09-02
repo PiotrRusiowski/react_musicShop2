@@ -1,0 +1,21 @@
+.googleMap__wrapper {
+  height: 300px;
+  width: 100%;
+  overflow: hidden;
+}
+.googleMap__mark__wrapper {
+  color: white;
+  background-color: red;
+  padding: 12px 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 100% 100% 100% 0;
+  width: 60px;
+  height: 60px;
+  transform: rotate(-45deg);
+}
+.googleMap__mark__text {
+  transform: rotate(45deg);
+}

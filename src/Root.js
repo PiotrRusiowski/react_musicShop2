@@ -60,7 +60,7 @@ const Root = () => {
       if (imgCounter == banerArray.length - 1) {
         setImgCounter(0);
       }
-    }, 10000);
+    }, 4000);
 
     return () => clearInterval(timer);
   });
