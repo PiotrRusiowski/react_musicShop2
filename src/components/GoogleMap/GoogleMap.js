@@ -17,6 +17,9 @@ class GoogleMap extends Component {
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
           yesIWantToUseGoogleMapApiInternals
+          // bootstrapURLKeys={{
+          //   key: "AIzaSyCwMqrGNCdr9Bm7VLwnlXIXj5goQzwbfho",
+          // }}
         >
           <div
             className="googleMap__mark__wrapper"

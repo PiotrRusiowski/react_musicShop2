@@ -18,6 +18,7 @@ const Product = ({ name, desc, image, price }) => {
             name: name,
             desc: desc,
             image: image,
+            price: price,
           },
         }}
       >
@@ -33,6 +34,7 @@ const Product = ({ name, desc, image, price }) => {
               name: name,
               desc: desc,
               image: image,
+              price: price,
             },
           }}
         >
