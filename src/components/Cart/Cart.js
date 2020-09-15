@@ -4,8 +4,8 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import RootContext from "../../context/context";
-import "./Cart.css";
 import PaypalButton from "../PayPalButton/PayPalButton";
+import styled from "styled-components";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -22,6 +22,40 @@ const useStyles = makeStyles((theme) => ({
     width: "30vw",
   },
 }));
+
+const StyledCartList = styled.ul`
+  display: flex;
+  flex-direction: column;
+`;
+const StyledCartListElement = styled.li`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  padding: 8px;
+`;
+const StyledCartListElementImg = styled.img`
+  flex-basis: 25%;
+  height: 80px;
+`;
+const StyledCartListElementName = styled.h2`
+  font-size: 16px;
+  flex-basis: 30%;
+  font-weight: bold;
+  line-height: 1.4;
+`;
+const StyledCartListElementPrice = styled.h4`
+  padding: 10px;
+  text-align: right;
+  font-size: 15px;
+  font-weight: normal;
+`;
+const StyledBtnGroup = styled.div`
+  display: flex;
+  justify-content: space-around;
+  flex-basis: 20%;
+`;
 
 const Cart = () => {
   const classes = useStyles();
@@ -55,27 +89,23 @@ const Cart = () => {
       >
         <Fade in={isCartOpen}>
           <div className={classes.paper}>
-            <ul className="cartList">
+            <StyledCartList>
               {cart.map((product) => {
                 return (
-                  <li className="cartList__element">
-                    <img
-                      src={product.productImage}
-                      alt=""
-                      className="cartList__element__img"
-                    />
-                    <h2 className="cartList__element__name">
+                  <StyledCartListElement>
+                    <StyledCartListElementImg src={product.productImage} />
+
+                    <StyledCartListElementName>
                       {product.productName}
-                    </h2>
-                    <h4 className="cartList__element__price">
+                    </StyledCartListElementName>
+                    <StyledCartListElementPrice>
                       {product.productPrice}$
-                    </h4>
-                    <div className="cartList__element__BtnGroup">
+                    </StyledCartListElementPrice>
+                    <StyledBtnGroup>
                       <button
                         onClick={() =>
                           decreseProductQuantity(product.productName)
                         }
-                        className="cartList__element__decreaseBtn"
                       >
                         -
                       </button>
@@ -88,7 +118,6 @@ const Cart = () => {
                         +
                       </button>
                       <button
-                        className="cartList__element__deleteBtn"
                         onClick={() => {
                           removeProductFromCart(
                             product.productName,
@@ -98,11 +127,11 @@ const Cart = () => {
                       >
                         X
                       </button>
-                    </div>
-                  </li>
+                    </StyledBtnGroup>
+                  </StyledCartListElement>
                 );
               })}
-            </ul>
+            </StyledCartList>
 
             {cart.length <= 0 ? (
               ""

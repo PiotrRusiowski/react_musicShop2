@@ -1,0 +1,5 @@
+categoryAll=białe;
+czarna kulka w rangeInput
+activ navbarLink
+Sekcja About 
+inne przejścia w Home

@@ -17,21 +17,35 @@
   font-weight: normal;
 }
 
-.form__input-wrapper {
+.form__wrapper {
   display: flex;
+}
+.form__input__wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-bottom: 20px;
 }
 
 .form__input {
-  flex-grow: 1;
   padding: 15px 10px;
-  margin-bottom: 20px;
+
   border: none;
   border-radius: 5px;
   background-color: #eeeeee;
   outline: none;
 }
+.form__input__error {
+  padding: 15px 10px;
 
-.form__input:nth-child(1) {
+  border: 1px solid red;
+  border-radius: 5px;
+  color: grey;
+  /* background-color: #ee5e5e; */
+  outline: none;
+}
+
+.form__input__wrapper:nth-child(1) {
   margin-right: 20px;
 }
 .form__textArea {
@@ -40,18 +54,10 @@
   margin-bottom: 10px;
   background-color: #eeeeee;
   outline: none;
+  height: 100px;
   /* background-color: rgba(89, 158, 248, 0.4); */
 }
-.form__btn {
-  margin-left: auto;
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 2px;
-  padding: 8px 30px;
-  background-color: rgba(89, 158, 248, 0.4);
-  border: 1px black solid;
-  border-radius: 5px;
-}
+
 .formDesc {
   flex-basis: 35%;
   display: flex;
@@ -62,4 +68,24 @@
 .toOrder {
   color: black;
   font-weight: normal;
+}
+#akceptCheckBox {
+  margin-right: 10px;
+}
+.error {
+  /* background-color: rgba(89, 158, 248, 0.4); */
+
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: auto;
+  /* width: 250px; */
+  /* color: #599ef8; */
+  color: red;
+  font-weight: lighter;
+}
+.CheckBoxError {
+  margin-top: 5px;
+  margin-right: auto;
+  font-weight: lighter;
+  color: red;
 }

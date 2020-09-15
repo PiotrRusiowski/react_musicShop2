@@ -1,19 +1,22 @@
 import React, { useContext } from "react";
 import SearchInput from "../SearchInput/SearchInput";
-import RootContext from "../../context/context";
 import CategoryFilter from "./CategoryFilter";
 import PriceRangeInput from "../PriceRangeInput/PriceRangeInput";
-import "./ProductsFilterMenu.css";
-const ProductsFilterMenu = () => {
-  const context = useContext(RootContext);
+import styled from "styled-components";
 
+const StyledProductsFilterMenu = styled.div`
+  display: flex;
+  background-color: #599ef8;
+  box-shadow: 10px 0px 10px 0px rgba(0.5, 0, 0, 0.7);
+`;
+const ProductsFilterMenu = () => {
   return (
     <>
-      <div className="productsFilterMenu">
+      <StyledProductsFilterMenu>
         <SearchInput />
         <CategoryFilter />
         <PriceRangeInput />
-      </div>
+      </StyledProductsFilterMenu>
     </>
   );
 };

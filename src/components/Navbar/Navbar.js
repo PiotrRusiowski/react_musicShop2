@@ -1,10 +1,88 @@
 import React, { useContext } from "react";
-import "./Navbar.css";
 import { Link } from "react-router-dom";
 import RootContext from "../../context/context";
 import Cart from "../Cart/Cart";
 import cartIcon from "../../assets/icons/cartIcon.svg";
 import logo from "../../assets/icons/logo_ready3.png";
+import styled from "styled-components";
+
+const StyledNavbarLink = styled(Link)`
+  font-weight: bold;
+  font-size: 15px;
+  letter-spacing: 3px;
+  text-decoration: none;
+  color: rgb(211, 197, 197);
+  position: relative;
+  padding-bottom: 10px;
+  :hover {
+    color: white;
+  }
+  :after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #fff;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+  :hover:after {
+    width: 140%;
+    left: -20%;
+  }
+`;
+
+const StyledNavbarWrapper = styled.div`
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(0, 0, 0);
+`;
+const StyledLogo = styled.img`
+  height: 60px;
+  width: 160px;
+  margin: 4px 0px;
+`;
+const StyledNavbarList = styled.ul`
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+`;
+const StyledNavbarListElement = styled.li`
+  margin: 0 20px 0 20px;
+  position: relative;
+`;
+const StyledCard = styled.button`
+  position: relative;
+  background-color: white;
+  border-radius: 10%;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  border: none;
+  outline: none;
+  transition: 0.3s;
+`;
+const StyledCardImg = styled.img`
+  position: absolute;
+  z-index: 22;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+`;
+const StyledCardCounter = styled.p`
+  position: absolute;
+  left: 50%;
+  top: 65%;
+  transform: translate(-50%, -60%);
+  font-weight: bold;
+`;
 
 const Navbar = () => {
   const context = useContext(RootContext);
@@ -12,42 +90,42 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar__wrapper">
+      <StyledNavbarWrapper>
         <div className="container">
-          <img src={logo} alt="logo" className=" logo" />
+          <StyledLogo src={logo} />
         </div>
-        <ul className="navbar__list container">
-          <li className="navbar_element">
-            <Link to="/" className="navbar_link">
-              Home
-            </Link>
-          </li>
-          <li className="navbar_element">
-            <Link to="/about" className="navbar_link">
-              About
-            </Link>
-          </li>
-          <li className="navbar_element">
-            <Link to="/contact" className="navbar_link">
-              Contact
-            </Link>
-          </li>
-          <li className="navbar_element">
-            <Link to="/products" className="navbar_link">
-              Products
-            </Link>
-          </li>
-          <li>
-            <button className="nav__card" onClick={handleCartOpen}>
-              <img src={cartIcon} alt="cart" className="nav__card__img" />
-              <p className="cartCouter">{cartCounter}</p>
-            </button>
-          </li>
-          <li>
-            <Cart />
-          </li>
-        </ul>
-      </div>
+        <div className="container">
+          <StyledNavbarList>
+            <StyledNavbarListElement>
+              <StyledNavbarLink to="/">Home</StyledNavbarLink>
+            </StyledNavbarListElement>
+            <StyledNavbarListElement>
+              <StyledNavbarLink to="/about" className="navbar_link">
+                About
+              </StyledNavbarLink>
+            </StyledNavbarListElement>
+            <StyledNavbarListElement>
+              <StyledNavbarLink to="/contact" className="navbar_link">
+                Contact
+              </StyledNavbarLink>
+            </StyledNavbarListElement>
+            <StyledNavbarListElement>
+              <StyledNavbarLink to="/products" className="navbar_link">
+                Products
+              </StyledNavbarLink>
+            </StyledNavbarListElement>
+            <li>
+              <StyledCard onClick={handleCartOpen}>
+                <StyledCardImg img src={cartIcon} alt="cart" />
+                <StyledCardCounter>{cartCounter}</StyledCardCounter>
+              </StyledCard>
+            </li>
+            <li>
+              <Cart />
+            </li>
+          </StyledNavbarList>
+        </div>
+      </StyledNavbarWrapper>
     </>
   );
 };

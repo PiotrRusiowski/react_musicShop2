@@ -1,45 +1,44 @@
 import React from "react";
-import "./Carousel.css";
+import AwesomeSlider from "react-awesome-slider";
+import withAutoplay from "react-awesome-slider/dist/autoplay";
 import img1 from "../../assets/images/slider/slider_1.jpg";
 import img2 from "../../assets/images/slider/slider_2.jpg";
-import img3 from "../../assets/images/slider/slider_3.jpg";
 
-const Carousel = () => {
-  return (
-    <div>
-      <div class="slideshow-container">
-        <div class="mySlides fade">
-          <div class="numbertext">1 / 3</div>
-          <img src={img1} />
-          <div class="text">Caption Text</div>
-        </div>
+import "react-awesome-slider/dist/styles.css";
+import styled from "styled-components";
 
-        <div class="mySlides fade">
-          <div class="numbertext">2 / 3</div>
-          <img src={img2} />
-          <div class="text">Caption Two</div>
-        </div>
+const AutoplaySlider = withAutoplay(AwesomeSlider);
 
-        <div class="mySlides fade">
-          <div class="numbertext">3 / 3</div>
-          <img src={img3} />
-          <div class="text">Caption Three</div>
-        </div>
+const StyledSliderWrapper = styled.div`
+  width: 100%;
+  height: 80vh;
+  margin: 0;
+  padding: 15px 0px;
+`;
+const StyledSlider = styled(AutoplaySlider)`
+  width: 50%;
+  height: 100%;
+  margin: auto;
+  overflow: hidden;
+`;
+const StyledSliderSlide = styled.div`
+  background-color: red;
+  display: flex;
+`;
+const StyledSliderSlideH1 = styled.h1`
+  font-size: 30px;
+`;
+const Slider = () => (
+  <StyledSliderWrapper>
+    <StyledSlider
+      play={true}
+      cancelOnInteraction={false} // should stop playing on user interaction
+      interval={3000}
+    >
+      <div data-src={img1} />
 
-        <a class="prev" onclick="plusSlides(-1)">
-          &#10094;
-        </a>
-        <a class="next" onclick="plusSlides(1)">
-          &#10095;
-        </a>
-      </div>
-      <br />
-      <div>
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
-      </div>
-    </div>
-  );
-};
-export default Carousel;
+      <div data-src={img2} />
+    </StyledSlider>
+  </StyledSliderWrapper>
+);
+export default Slider;

@@ -12,6 +12,9 @@ import { client } from "./contentfulData/contentfulData";
 import img1 from "./assets/images/slider/slider_1.jpg";
 import img2 from "./assets/images/slider/slider_2.jpg";
 import img3 from "./assets/images/slider/slider_3.jpg";
+import GlobalStyle from "./themes/GlobalStyle";
+import { ThemeProvider } from "styled-components";
+import { mainTheme } from "./themes/mainTheme";
 
 const Root = () => {
   const getCartFromLocalStorage = () => {
@@ -56,8 +59,8 @@ const Root = () => {
     const timer = setInterval(() => {
       setImgCounter(imgCounter + 1);
       // counter + 1;   ?????
-      console.log(banerImg);
-      if (imgCounter == banerArray.length - 1) {
+
+      if (imgCounter === banerArray.length - 1) {
         setImgCounter(0);
       }
     }, 4000);
@@ -85,13 +88,13 @@ const Root = () => {
           productDesc,
           productCategory,
         };
-        return product;
+        return product; ///wrzuca product do contentfulProducts???
       });
 
       console.log(contentfulProducts);
 
       let maxPrice = Math.max(
-        ...contentfulProducts.map((product) => product.productPrice)
+        ...contentfulProducts.map((product) => product.productPrice) ////??
       );
 
       setPriceValue(maxPrice);
@@ -250,8 +253,6 @@ const Root = () => {
       case "categoryInput":
         console.log("Halo");
         setCategoryValue(value);
-      default:
-        console.log("error");
     }
   };
 
@@ -343,43 +344,46 @@ const Root = () => {
 
   return (
     <BrowserRouter>
-      <RootContext.Provider
-        value={{
-          cart,
-          isCartOpen,
-          cartCounter,
-          searchValue,
-          products,
-          minValue,
-          maxValue,
-          priceValue,
-          total,
-          categoryValue,
-          filteredProducts,
-          banerImg,
+      <GlobalStyle />
+      <ThemeProvider theme={mainTheme}>
+        <RootContext.Provider
+          value={{
+            cart,
+            isCartOpen,
+            cartCounter,
+            searchValue,
+            products,
+            minValue,
+            maxValue,
+            priceValue,
+            total,
+            categoryValue,
+            filteredProducts,
+            banerImg,
 
-          increseProductQuantity,
-          handleDuplicateInCart,
-          resetFilters,
-          removeProductFromCart,
-          addToCart,
-          increaseCartCounter,
-          handleCartOpen,
-          handleCartClose,
-          filterMenager,
-          decreseProductQuantity,
-          clearCart,
-          resetCartCounter,
-        }}
-      >
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} />
-          <Route path="/contact" component={Contact} />
-          <Route exact path="/products" component={Products} />
-          <Route path="/products/:productName" component={SingleProduct} />
-        </Switch>
-      </RootContext.Provider>
+            increseProductQuantity,
+            handleDuplicateInCart,
+            resetFilters,
+            removeProductFromCart,
+            addToCart,
+            increaseCartCounter,
+            handleCartOpen,
+            handleCartClose,
+            filterMenager,
+            decreseProductQuantity,
+            clearCart,
+            resetCartCounter,
+          }}
+        >
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            <Route exact path="/products" component={Products} />
+            <Route path="/products/:productName" component={SingleProduct} />
+          </Switch>
+        </RootContext.Provider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 };
