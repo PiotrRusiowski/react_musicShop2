@@ -8,6 +8,7 @@ const StyledProductTitle = styled.h2`
   font-weight: normal;
   margin: 0;
   text-align: center;
+  letter-spacing: 1px;
 `;
 const StyledProductPrice = styled.h4`
   padding: 14px;

@@ -4,24 +4,18 @@ import * as Yup from "yup";
 import "./FormikConatctForm.css";
 import Button from "../../components/styledComponents/Button";
 import styled from "styled-components";
+import Title from "../../components/styledComponents/Title";
 
 const StyledFormContact = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 20px 0 20px 0;
-  color: #666;
 `;
 const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
   flex-basis: 50%;
   justify-content: space-between;
-`;
-const StyledFormTitle = styled.h1`
-  margin-bottom: 20px;
-  color: black;
-  letter-spacing: 1px;
-  font-weight: normal;
 `;
 
 const StyledFormWrapper = styled.div`
@@ -126,7 +120,7 @@ const FormikConatctForm = () => {
 
             return (
               <StyledForm>
-                <StyledFormTitle>Contact</StyledFormTitle>
+                <Title>Contact</Title>
                 <StyledFormWrapper>
                   <StyledFormInputWrapper>
                     <Field
@@ -203,7 +197,7 @@ const FormikConatctForm = () => {
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. <br />
             Accusamus totam quibusdam inventore. Doloribus recusandae eum
-            consectetur quae unde quod <br /> blanditiis.oasdoho soidhao
+            consectetur quae unde quod <br /> blanditiis.oasdoho soidhaodasdasd
           </p>
 
           <p>

@@ -8,7 +8,7 @@ const StyledSingleProduct = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #eeeeee;
+  background-color: ${({ theme }) => theme.lightGrey};
 `;
 const StyledSingleProductWrapper = styled.div`
   display: flex;

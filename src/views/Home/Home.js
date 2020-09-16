@@ -19,9 +19,15 @@ const StyledBanerImg = styled.img`
   animation: img 8s;
   z-index: -99;
   position: absolute;
-  opacity: 0.8;
 `;
-
+const StyledDiv = styled.div`
+  height: 400px;
+  width: 500px;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.5);
+  top: 0;
+  left: 0;
+`;
 const StyledBanerItem = styled.div`
   position: absolute;
   top: 45%;
@@ -32,9 +38,10 @@ const StyledBanerItem = styled.div`
   justify-items: center;
   align-items: center;
   z-index: 2;
-  /* background-color: #599ef8;
-opacity: 0.5; */
-  width: 40%;
+  background-color: rgba(255, 255, 255, 0.5);
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  width: 100%;
+  padding: 20px;
 `;
 const StyledBanerTitle = styled.h1`
   font-family: "Nanum Gothic", sans-serif;

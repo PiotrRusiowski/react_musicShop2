@@ -5,11 +5,14 @@ const Button = styled.button`
   font-size: ${({ theme }) => theme.fontSize.s};
   letter-spacing: 2px;
   padding: 12px 45px;
-  background-color: ${({ theme }) => theme.lightBlue};
+  background-color: ${({ theme }) => theme.blue};
   border: 2px black solid;
   border-radius: 5px;
   margin-top: 20px;
   cursor: pointer;
+  :hover {
+    background-color: ${({ theme }) => theme.lightBlue};
+  }
   /* background-color: ${(props) =>
     props.isBlue ? "blue" : props.isDark ? "black" : "pink"}; */
 

@@ -12,7 +12,12 @@ const GlobalStyle = createGlobalStyle`
 html {
   font-size: 62.5%;
 }
-
+p{
+  color:#666;
+  padding-bottom:1rem;
+  padding-top:1rem;
+ 
+}
 body {
   font-size: 1.6rem;
 }

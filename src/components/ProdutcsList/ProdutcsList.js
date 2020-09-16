@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Product from "../Product/Product";
 import RootContext from "../../context/context";
 import styled from "styled-components";
+import Card from "../styledComponents/Card";
 
 const StyledProductList = styled.ul`
   display: flex;
@@ -9,18 +10,10 @@ const StyledProductList = styled.ul`
   padding: 3rem 0;
   justify-content: space-around;
 `;
-const StyledProduct = styled.li`
-  flex-basis: 25%;
-  margin-bottom: 50px;
-  padding: 20px;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-content: center;
-  align-items: center;
-  transition: 0.3s;
-  border-radius: 5px;
+const StyledCard = styled(Card)`
+  :hover {
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.75);
+  }
 `;
 const ProdutcsList = () => {
   const context = useContext(RootContext);
@@ -40,7 +33,7 @@ const ProdutcsList = () => {
                 productPrice,
               } = product;
               return (
-                <StyledProduct
+                <StyledCard
                   onClick={() => {
                     console.log("li");
                   }}
@@ -51,7 +44,7 @@ const ProdutcsList = () => {
                     image={productImage}
                     price={productPrice}
                   />
-                </StyledProduct>
+                </StyledCard>
               );
             })}
           </StyledProductList>
