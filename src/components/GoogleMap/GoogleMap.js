@@ -40,9 +40,6 @@ class GoogleMap extends Component {
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
           yesIWantToUseGoogleMapApiInternals
-          // bootstrapURLKeys={{
-          //   key: "AIzaSyCwMqrGNCdr9Bm7VLwnlXIXj5goQzwbfho",
-          // }}
         >
           <StyledMarkerWrapper lat={52.247976} lng={21.015256}>
             <StyledMarkerText>We are here</StyledMarkerText>

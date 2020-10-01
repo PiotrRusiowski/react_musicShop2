@@ -1,8 +1,7 @@
 import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Slider from "../../components/Carousel/Carousel";
-import "./About.css";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Title from "../../components/styledComponents/Title";
 import Card from "../../components/styledComponents/Card";
 import img1 from "../../assets/icons/homeIcons/4k-black-48dp.svg";
@@ -15,14 +14,33 @@ const StyledAboutTitle = styled(Title)`
 const StyledAboutWrapper = styled.div`
   display: flex;
   width: 100%;
-
   margin: 0;
   justify-content: space-between;
+  @media (max-width: 710px) {
+    flex-direction: column;
+  }
 `;
 const StyledSliderWrapper = styled.div`
   width: 50%;
   margin-left: auto;
   overflow: hidden;
+  ${({ mobile }) =>
+    mobile &&
+    css`
+      @media (max-width: 710px) {
+        display: none;
+      }
+    `}
+  ${({ tablet }) =>
+    tablet &&
+    css`
+      @media (min-width: 768px) {
+        display: none;
+      }
+    `}
+  @media (max-width: 710px) {
+    width: 100%;
+  }
 `;
 
 const StyledAbout = styled.div`
@@ -34,6 +52,9 @@ const StyledAbout = styled.div`
   padding: 25px 25px;
   align-items: center;
   justify-content: space-around;
+  @media (max-width: 710px) {
+    width: 100%;
+  }
 `;
 const StyledDescWrapper = styled.div`
   display: flex;
@@ -47,16 +68,24 @@ const StyledAboutWrapper2 = styled.ul`
   display: flex;
   align-items: center;
   height: 100%;
+  padding-top: 40px;
+  @media (max-width: 710px) {
+    flex-direction: column;
+  }
 `;
 const StyledGrey = styled.div`
   background-color: ${({ theme }) => theme.lightGrey};
 `;
 const StyledCard = styled(Card)`
   background-color: white;
-  margin-top: 40px;
   box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.75);
   flex-basis: 22%;
   text-align: center;
+  @media (max-width: 770px) {
+    flex-basis: 30%;
+  }
+  @media (max-width: 710px) {
+  }
 `;
 const StyledCardImg = styled.div`
   width: 90%;
@@ -71,13 +100,10 @@ const About = () => {
   return (
     <>
       <Navbar />
+      <StyledSliderWrapper tablet>
+        <Slider />
+      </StyledSliderWrapper>
       <StyledAboutWrapper>
-        {/* <div className="container"> */}
-        {/* <Button>kliknij</Button>
-      <Button isBlue>Kilknij niebieski</Button>
-      <Button isDark>Kilknij czarny</Button>
-      <StyledAboutButton>Kliknij żółty</StyledAboutButton> */}
-
         <StyledAbout>
           <StyledAboutTitle>About</StyledAboutTitle>
           <StyledDescWrapper>
@@ -96,13 +122,13 @@ const About = () => {
                 ex, rem, officia quod fugiat porro ipsam cum necessitatibus
                 nihil eveniet. Ut, iusto?
               </p>
-              <p>
+              {/* <p>
                 <strong>About:</strong>0qo0qw0qw0
               </p>
               <br />
               <p>
                 <strong>Adress</strong> asdomoodsam
-              </p>
+              </p> */}
             </StyledDesc>
             <StyledDesc>
               <p>
@@ -119,18 +145,18 @@ const About = () => {
                 ex, rem, officia quod fugiat porro ipsam cum necessitatibus
                 nihil eveniet. Ut, iusto?
               </p>
-              <p>
+              {/* <p>
                 <strong>About:</strong>0qo0qw0qw0
               </p>
               <br />
               <p>
                 <strong>Adress</strong> asdomoodsam
-              </p>
+              </p> */}
             </StyledDesc>
           </StyledDescWrapper>
         </StyledAbout>
 
-        <StyledSliderWrapper>
+        <StyledSliderWrapper mobile>
           <Slider />
         </StyledSliderWrapper>
       </StyledAboutWrapper>

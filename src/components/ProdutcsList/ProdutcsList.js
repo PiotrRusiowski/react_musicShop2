@@ -20,7 +20,7 @@ const ProdutcsList = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container2">
         {context.filteredProducts.length === 0 ? (
           <p>sorry, no products matched your search filters </p>
         ) : (

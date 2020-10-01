@@ -20,6 +20,15 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
     height: "90vh",
     width: "30vw",
+
+    "@media(max-width: 1025px)": {
+      width: "60vw",
+    },
+
+    "@media(max-width: 424px)": {
+      width: "90vw",
+      margin: "auto",
+    },
   },
 }));
 

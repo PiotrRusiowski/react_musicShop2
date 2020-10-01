@@ -22,19 +22,32 @@ body {
   font-size: 1.6rem;
 }
 .container {
-  margin: 0px 25px;
+  margin:0 25px ;
+  @media(max-width:376px){
+display:none  
+
 }
 
+  
+}
+
+.container2{
+  margin:0 25px ;
+}
 .line2 {
   width: 90%;
   height: 1px;
   background-color: #eeeeee;
+  /* background-color:black; */
   margin: 2px 0;
+  border-radius:5px;
 }
 .line {
   height: 90%;
   width: 2px;
   background-color: #eeeeee;
+  border-radius:5px;
+  
 }
 
 

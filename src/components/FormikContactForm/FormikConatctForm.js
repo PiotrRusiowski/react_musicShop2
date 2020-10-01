@@ -3,13 +3,20 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./FormikConatctForm.css";
 import Button from "../../components/styledComponents/Button";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Title from "../../components/styledComponents/Title";
 
 const StyledFormContact = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 20px 0 20px 0;
+  ${({ mobile }) =>
+    mobile &&
+    css`
+      @media (max-width: 712px) {
+        flex-direction: column-reverse;
+      }
+    `}
 `;
 const StyledForm = styled(Form)`
   display: flex;
@@ -20,6 +27,13 @@ const StyledForm = styled(Form)`
 
 const StyledFormWrapper = styled.div`
   display: flex;
+  ${({ mobile }) =>
+    mobile &&
+    css`
+      @media (max-width: 712px) {
+        flex-direction: column;
+      }
+    `}
 `;
 const StyledFormInputWrapper = styled.div`
   display: flex;
@@ -29,13 +43,20 @@ const StyledFormInputWrapper = styled.div`
   :nth-child(1) {
     margin-right: 20px;
   }
+  ${({ mobile }) =>
+    mobile &&
+    css`
+      @media (max-width: 712px) {
+        :nth-child(1) {
+          margin-right: 0px;
+        }
+      }
+    `}
 `;
 const StyledError = styled.div`
   border-radius: 5px;
   margin-top: 5px;
   margin-left: auto;
-  /* width: 250px; */
-  /* color: #599ef8; */
   color: red;
   font-weight: lighter;
 `;
@@ -45,17 +66,28 @@ const StyledformInputError = styled.div`
   border: 1px solid red;
   border-radius: 5px;
   color: grey;
-  /* background-color: #ee5e5e; */
   outline: none;
 `;
 
+const StyledField = styled(Field)`
+  padding: 15px 10px;
+
+  border: ${({ isError }) => (isError ? "1px solid red" : "none")};
+  border-radius: 5px;
+  background-color: #eeeeee;
+  outline: none;
+  color: grey;
+`;
+
 const StyledTextArea = styled(Field)`
-  border: none;
+  padding: 15px 10px;
+  border: ${({ isError }) => (isError ? "1px solid red" : "none")};
   border-radius: 5px;
   margin-bottom: 10px;
   background-color: #eeeeee;
   outline: none;
-  height: 100px;
+  resize: none;
+  height: 140px;
 `;
 
 const StyledFormDesc = styled.div`
@@ -84,7 +116,7 @@ const FormikConatctForm = () => {
 
   return (
     <div className="container">
-      <StyledFormContact>
+      <StyledFormContact mobile>
         <Formik
           initialValues={{
             subject: "",
@@ -121,31 +153,28 @@ const FormikConatctForm = () => {
             return (
               <StyledForm>
                 <Title>Contact</Title>
-                <StyledFormWrapper>
-                  <StyledFormInputWrapper>
-                    <Field
+
+                <StyledFormWrapper mobile>
+                  <StyledFormInputWrapper mobile>
+                    <StyledField
                       type="text"
                       name="subject"
                       id="subject"
                       placeholder="subject"
-                      className={
-                        isMessageError ? "form__input__error" : "form__input"
-                      }
+                      isError={isSubjectError}
                     />
                     <StyledError>
                       <ErrorMessage name="subject" />
                     </StyledError>
                   </StyledFormInputWrapper>
                   <StyledFormInputWrapper>
-                    <Field
+                    <StyledField
                       type="email"
                       name="email"
                       id="email"
                       placeholder="email"
                       value={values.email}
-                      className={
-                        isEmailError ? "form__input__error" : "form__input"
-                      }
+                      isError={isEmailError}
                     />
                     <StyledError>
                       <ErrorMessage name="email" />
@@ -153,15 +182,13 @@ const FormikConatctForm = () => {
                   </StyledFormInputWrapper>
                 </StyledFormWrapper>
                 <StyledFormInputWrapper>
-                  <Field
+                  <StyledTextArea
                     name="message"
                     id="message"
                     placeholder="message"
                     value={values.message}
                     component="textarea"
-                    className={
-                      isMessageError ? "form__input__error" : "form__textArea" ///???
-                    }
+                    isError={isMessageError}
                   />
                   <StyledError>
                     <ErrorMessage name="message" />
@@ -192,7 +219,6 @@ const FormikConatctForm = () => {
           }}
         </Formik>
         <StyledFormDesc>
-          {/* <strong>To order:</strong> */}
           <h3 className="toOrder">To order:</h3>
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. <br />

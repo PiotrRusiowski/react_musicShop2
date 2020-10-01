@@ -6,12 +6,21 @@ import phone from "../../assets/icons/footer/phone.svg";
 import fb from "../../assets/icons/footer/facebook.svg";
 import email from "../../assets/icons/footer/email.svg";
 import Button from "../../components/styledComponents/Button";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
 
 const StyledBaner = styled.div`
   width: 100%;
   height: 90vh;
   position: relative;
+  display: flex;
+  ${({ mobile }) =>
+    mobile &&
+    css`
+      @media (max-width: 710px) {
+        overflow: hidden;
+      }
+    `}
 `;
 const StyledBanerImg = styled.img`
   width: 100%;
@@ -19,15 +28,15 @@ const StyledBanerImg = styled.img`
   animation: img 8s;
   z-index: -99;
   position: absolute;
+  ${({ mobile }) =>
+    mobile &&
+    css`
+      @media (max-width: 710px) {
+        width: auto;
+      }
+    `}
 `;
-const StyledDiv = styled.div`
-  height: 400px;
-  width: 500px;
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.5);
-  top: 0;
-  left: 0;
-`;
+
 const StyledBanerItem = styled.div`
   position: absolute;
   top: 45%;
@@ -84,13 +93,15 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <StyledBaner>
-        <StyledBanerImg src={context.banerImg} alt="audio" />
+      <StyledBaner mobile>
+        <StyledBanerImg mobile src={context.banerImg} alt="audio" />
         <StyledBanerItem>
           <StyledBanerTitle>Tech.Music</StyledBanerTitle>
-          {/* ??? */}
           <StyledTitleSmall>authorized shop</StyledTitleSmall>
-          <Button>Products</Button>
+          <Link to="/products">
+            {" "}
+            <Button>Products</Button>
+          </Link>
         </StyledBanerItem>
 
         <StyledFooter>

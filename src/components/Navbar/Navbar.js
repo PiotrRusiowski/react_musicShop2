@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import RootContext from "../../context/context";
 import Cart from "../Cart/Cart";
 import cartIcon from "../../assets/icons/cartIcon.svg";
 import logo from "../../assets/icons/logo_ready3.png";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import HamburgerMenu from "react-hamburger-menu";
 
-const StyledNavbarLink = styled(Link)`
+const StyledNavbarNavLink = styled(NavLink)`
   font-weight: bold;
   font-size: 15px;
   letter-spacing: 3px;
@@ -14,6 +15,7 @@ const StyledNavbarLink = styled(Link)`
   color: rgb(211, 197, 197);
   position: relative;
   padding-bottom: 10px;
+  /* background-color: blue; */
   :hover {
     color: white;
   }
@@ -33,6 +35,23 @@ const StyledNavbarLink = styled(Link)`
     width: 140%;
     left: -20%;
   }
+
+  &.active {
+    &:after {
+      color: white;
+      background: none repeat scroll 0 0 transparent;
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 2px;
+      left: 50%;
+      transform: translate(-50%);
+      position: absolute;
+      background: #fff;
+      transition: width 0.3s ease 0s, left 0.3s ease 0s;
+      width: 140%;
+    }
+  }
 `;
 
 const StyledNavbarWrapper = styled.div`
@@ -45,12 +64,20 @@ const StyledNavbarWrapper = styled.div`
 const StyledLogo = styled.img`
   height: 60px;
   width: 160px;
-  margin: 4px 0px;
+  margin: 4px 0px 4px -5px;
+  @media (max-width: 321px) {
+    display: none;
+  }
 `;
 const StyledNavbarList = styled.ul`
   margin-top: 6px;
   display: flex;
   align-items: center;
+  list-style: none;
+
+  @media (max-width: 710px) {
+    display: none;
+  }
 `;
 const StyledNavbarListElement = styled.li`
   margin: 0 20px 0 20px;
@@ -66,6 +93,23 @@ const StyledCard = styled.button`
   border: none;
   outline: none;
   transition: 0.3s;
+  margin: 10px 0 10px 10px;
+  ${({ hamburgerCart }) =>
+    hamburgerCart &&
+    css`
+      /* margin-right: -120px; */
+
+      @media (max-width: 712px) {
+        margin-left: 15px;
+        width: 40px;
+        height: 40px;
+      }
+      @media (min-width: 712px) {
+        display: none;
+      }
+      @media (min-width: 424px) {
+      }
+    `};
 `;
 const StyledCardImg = styled.img`
   position: absolute;
@@ -73,20 +117,70 @@ const StyledCardImg = styled.img`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
+  @media (max-width: 712px) {
+    width: 30px;
+    height: 30px;
+  }
 `;
 const StyledCardCounter = styled.p`
   position: absolute;
   left: 50%;
-  top: 65%;
+  top: 70%;
   transform: translate(-50%, -60%);
-  font-weight: bold;
+  /* font-weight: bold; */
+  font-size: 14px;
+  color: black;
+  @media (max-width: 712px) {
+    font-size: 18px;
+  }
+`;
+
+const StyledHamburgerMenu = styled(HamburgerMenu)`
+  /* margin-right: -70px; */
+  margin-right: 25px;
+  @media (min-width: 712px) {
+    display: none;
+  }
+
+  @media (max-width: 426px) {
+    margin-right: -80px;
+  }
+  @media (max-width: 376px) {
+    margin-right: 25px;
+  }
+`;
+
+const StyledHamburgerMenuLinksWrapper = styled.ul`
+  background-color: rgb(0, 0, 0);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 10px 0 10px;
+  transition: 0.3;
+`;
+
+const StyledHamburgerMenuLi = styled.li`
+  margin: 15px 0;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 1s;
 `;
 
 const Navbar = () => {
   const context = useContext(RootContext);
-  const { handleCartOpen, cartCounter } = context;
+  const {
+    handleCartOpen,
+    cartCounter,
+    isHamburgerMenuOpen,
+    handleHamburgerMenuOpen,
+  } = context;
 
   return (
     <>
@@ -94,25 +188,45 @@ const Navbar = () => {
         <div className="container">
           <StyledLogo src={logo} />
         </div>
+        <StyledCard hamburgerCart onClick={handleCartOpen}>
+          <StyledCardImg img src={cartIcon} alt="cart" />
+          <StyledCardCounter>{cartCounter}</StyledCardCounter>
+        </StyledCard>
+
+        <StyledHamburgerMenu
+          isOpen={isHamburgerMenuOpen}
+          menuClicked={handleHamburgerMenuOpen}
+          width={28}
+          height={22}
+          strokeWidth={3}
+          rotate={0}
+          color="white"
+          borderRadius={0}
+          animationDuration={0.3}
+        />
+
         <div className="container">
           <StyledNavbarList>
             <StyledNavbarListElement>
-              <StyledNavbarLink to="/">Home</StyledNavbarLink>
+              <StyledNavbarNavLink exact to="/">
+                Home
+              </StyledNavbarNavLink>
             </StyledNavbarListElement>
+
             <StyledNavbarListElement>
-              <StyledNavbarLink to="/about" className="navbar_link">
+              <StyledNavbarNavLink exact to="/about">
                 About
-              </StyledNavbarLink>
+              </StyledNavbarNavLink>
             </StyledNavbarListElement>
             <StyledNavbarListElement>
-              <StyledNavbarLink to="/contact" className="navbar_link">
+              <StyledNavbarNavLink exact to="/contact">
                 Contact
-              </StyledNavbarLink>
+              </StyledNavbarNavLink>
             </StyledNavbarListElement>
             <StyledNavbarListElement>
-              <StyledNavbarLink to="/products" className="navbar_link">
+              <StyledNavbarNavLink exact to="/products">
                 Products
-              </StyledNavbarLink>
+              </StyledNavbarNavLink>
             </StyledNavbarListElement>
             <li>
               <StyledCard onClick={handleCartOpen}>
@@ -126,6 +240,30 @@ const Navbar = () => {
           </StyledNavbarList>
         </div>
       </StyledNavbarWrapper>
+      {isHamburgerMenuOpen ? (
+        <StyledHamburgerMenuLinksWrapper>
+          <StyledHamburgerMenuLi>
+            <StyledNavbarNavLink exact to="/">
+              Home
+            </StyledNavbarNavLink>
+          </StyledHamburgerMenuLi>
+          <StyledHamburgerMenuLi>
+            <StyledNavbarNavLink exact to="/about">
+              About
+            </StyledNavbarNavLink>
+          </StyledHamburgerMenuLi>
+          <StyledHamburgerMenuLi>
+            <StyledNavbarNavLink exact to="/contact">
+              Contact
+            </StyledNavbarNavLink>
+          </StyledHamburgerMenuLi>
+          <StyledHamburgerMenuLi>
+            <StyledNavbarNavLink exact to="/products">
+              Products
+            </StyledNavbarNavLink>
+          </StyledHamburgerMenuLi>
+        </StyledHamburgerMenuLinksWrapper>
+      ) : null}
     </>
   );
 };
