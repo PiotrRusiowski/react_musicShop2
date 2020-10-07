@@ -9,46 +9,11 @@ const StyledPriceInputWrapper = styled.div`
 
   align-items: center;
   height: 30px;
+  @media (max-width: 426px) {
+    margin: 0px 25px;
+  }
 `;
-const StyledPriceInput = styled.input`
-  /* -webkit-appearance: none;
-width: 100%;
-height: 10px;
-background: white;
-border: 1px solid black;
-border-radius: 10px;
-transition: all 0.3s ease;
-:hover {
-  -webkit-appearance: none;
-}
-
-:active {
-  -webkit-appearance: none;
-}
-
-:-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  background: black;
-  cursor: pointer;
-  border-radius: 50px;
-}
-
-::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  border: none;
-  cursor: pointer;
-}
-::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  border: none;
-  cursor: pointer;
-} */
-`;
+const StyledPriceInput = styled.input``;
 const StyledPriceInputLabel = styled.label`
   background-color: black;
   height: 100%;

@@ -4,7 +4,7 @@ export const mainTheme = {
   lightGrey: "#eeeeee",
 
   orange: "rgb(242, 216, 165)",
-  blue: "rgb(89, 158, 248)",
+  blue: "#599ef8",
 
   lightFont: 300,
   mediumFont: 400,

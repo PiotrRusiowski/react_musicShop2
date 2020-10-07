@@ -3,25 +3,40 @@ import SearchInput from "../SearchInput/SearchInput";
 import CategoryFilter from "./CategoryFilter";
 import PriceRangeInput from "../PriceRangeInput/PriceRangeInput";
 import styled, { css } from "styled-components";
+import RootContext from "../../context/context";
 
 const StyledProductsFilterMenu = styled.div`
   display: flex;
-  background-color: #599ef8;
+  background-color: ${({ theme }) => theme.blue};
   box-shadow: 10px 0px 10px 0px rgba(0.5, 0, 0, 0.7);
   ${({ mobile }) =>
     mobile &&
     css`
-      @media (max-width: 710px) {
+      @media (max-width: 426px) {
         flex-direction: column;
+        background-color: black;
       }
     `}
 `;
-const StyledCategoryFilterWrapper = styled.div`
-  /* width: 105px;
-  border-radius: 0px 0px 5px 0px;
-  border: 1px solid black;
-  background-color: white;
-  height: 100%; */
+const StyledFilterMenu = styled.div`
+  width: ${({ isOpen }) => (isOpen ? "350px" : "0px")};
+  display: flex;
+  transition: all 0.5s ease-in-out;
+  @media (max-width: 426px) {
+    flex-direction: column;
+    height: ${({ isOpen }) => (isOpen ? "70px" : "0px")};
+    transition: all 0.3s ease-in-out;
+  }
+`;
+const StyledFiltersWrapper = styled.div`
+  display: flex;
+  opacity: ${({ isVisible }) => (isVisible ? "1" : "0")};
+  transition: all 0.3s ease-in-out;
+  transition-delay: 0.5s;
+  @media (max-width: 426px) {
+    flex-direction: column-reverse;
+    /* align-items: center; */
+  }
 `;
 const StyledFilterButton = styled.button`
   background-color: black;
@@ -33,19 +48,37 @@ const StyledFilterButton = styled.button`
   border-radius: 0px 0px 5px 0px;
   padding: 0px 5px;
   outline: none;
+  :hover {
+    color: white;
+  }
 `;
-
+const StyledArrow = styled.img`
+  width: 20px;
+  height: 20px;
+`;
 const ProductsFilterMenu = () => {
+  const context = useContext(RootContext);
+  const { handleFilterMenuOpen, isFilterMenuOpen } = context;
   return (
     <>
       <StyledProductsFilterMenu mobile>
         <SearchInput />
-        <StyledFilterButton>More filter ></StyledFilterButton>
-        {/* <StyledCategoryFilterWrapper>
-          <CategoryFilter />
-        </StyledCategoryFilterWrapper>
+        <StyledFilterMenu isOpen={isFilterMenuOpen}>
+          <StyledFiltersWrapper isVisible={isFilterMenuOpen}>
+            {isFilterMenuOpen ? (
+              <>
+                <CategoryFilter />
+                <PriceRangeInput />
+              </>
+            ) : (
+              ""
+            )}
+          </StyledFiltersWrapper>
+        </StyledFilterMenu>
 
-        <PriceRangeInput /> */}
+        <StyledFilterButton onClick={handleFilterMenuOpen}>
+          {isFilterMenuOpen ? "< Hide" : "More filter >"}
+        </StyledFilterButton>
       </StyledProductsFilterMenu>
     </>
   );

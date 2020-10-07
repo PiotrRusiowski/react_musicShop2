@@ -34,6 +34,9 @@ display:none
 .container2{
   margin:0 25px ;
 }
+
+
+}
 .line2 {
   width: 90%;
   height: 1px;

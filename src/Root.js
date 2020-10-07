@@ -51,11 +51,14 @@ const Root = () => {
   const [banerArray, setBanerArray] = useState([img1, img2, img3]);
   const [imgCounter, setImgCounter] = useState(0);
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
+  const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 
   const handleHamburgerMenuOpen = () => {
     setIsHamburgerMenuOpen(!isHamburgerMenuOpen);
   };
-
+  const handleFilterMenuOpen = () => {
+    setIsFilterMenuOpen(!isFilterMenuOpen);
+  };
   const setCartToLocalStorage = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
   };
@@ -287,6 +290,7 @@ const Root = () => {
             categoryValue,
             filteredProducts,
             banerImg,
+            handleFilterMenuOpen,
 
             increseProductQuantity,
             handleDuplicateInCart,
@@ -303,6 +307,7 @@ const Root = () => {
             handleHamburgerMenuOpen,
             isHamburgerMenuOpen,
             handlePriceChange,
+            isFilterMenuOpen,
           }}
         >
           <Switch>

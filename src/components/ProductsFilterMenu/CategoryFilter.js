@@ -12,14 +12,13 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 100,
     margin: 0,
-    // background: "white",
-
     padding: 2,
-
+    background: "white",
     "@media(max-width: 425px)": {
       marginRight: 25,
-      marginLeft: 28,
+      marginLeft: 25,
       marginTop: 5,
+      width: 230,
     },
   },
 }));

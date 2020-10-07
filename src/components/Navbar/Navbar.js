@@ -14,8 +14,7 @@ const StyledNavbarNavLink = styled(NavLink)`
   text-decoration: none;
   color: rgb(211, 197, 197);
   position: relative;
-  padding-bottom: 10px;
-  /* background-color: blue; */
+  padding: 10px 0;
   :hover {
     color: white;
   }
@@ -81,6 +80,7 @@ const StyledNavbarList = styled.ul`
 `;
 const StyledNavbarListElement = styled.li`
   margin: 0 20px 0 20px;
+  padding: 10px 0;
   position: relative;
 `;
 const StyledCard = styled.button`
@@ -97,10 +97,8 @@ const StyledCard = styled.button`
   ${({ hamburgerCart }) =>
     hamburgerCart &&
     css`
-      /* margin-right: -120px; */
-
-      @media (max-width: 712px) {
-        margin-left: 15px;
+      @media (max-width: 426px) {
+        margin-left: 25px;
         width: 40px;
         height: 40px;
       }
@@ -129,7 +127,6 @@ const StyledCardCounter = styled.p`
   left: 50%;
   top: 70%;
   transform: translate(-50%, -60%);
-  /* font-weight: bold; */
   font-size: 14px;
   color: black;
   @media (max-width: 712px) {
@@ -138,7 +135,6 @@ const StyledCardCounter = styled.p`
 `;
 
 const StyledHamburgerMenu = styled(HamburgerMenu)`
-  /* margin-right: -70px; */
   margin-right: 25px;
   @media (min-width: 712px) {
     display: none;
@@ -160,17 +156,21 @@ const StyledHamburgerMenuLinksWrapper = styled.ul`
   justify-content: center;
   align-items: center;
   list-style: none;
-  padding: 10px 0 10px;
-  transition: 0.3;
+  margin-top: 0px;
+  padding-top: 0px;
+  height: ${({ isOpen }) => (isOpen ? "250px" : "0")};
+  transition: all 0.3s ease-in-out;
 `;
 
 const StyledHamburgerMenuLi = styled.li`
-  margin: 15px 0;
+  margin: 10px 0;
   width: 100vw;
   display: flex;
+  opacity: ${({ isVisible }) => (isVisible ? "1" : "0")};
   align-items: center;
   justify-content: center;
-  transition: 1s;
+  transition: all 0.3s ease-in-out;
+  transition-delay: 0.5s;
 `;
 
 const Navbar = () => {
@@ -240,30 +240,44 @@ const Navbar = () => {
           </StyledNavbarList>
         </div>
       </StyledNavbarWrapper>
-      {isHamburgerMenuOpen ? (
-        <StyledHamburgerMenuLinksWrapper>
-          <StyledHamburgerMenuLi>
+      <StyledHamburgerMenuLinksWrapper isOpen={isHamburgerMenuOpen}>
+        <StyledHamburgerMenuLi isVisible={isHamburgerMenuOpen}>
+          {isHamburgerMenuOpen ? (
             <StyledNavbarNavLink exact to="/">
               Home
             </StyledNavbarNavLink>
-          </StyledHamburgerMenuLi>
-          <StyledHamburgerMenuLi>
+          ) : (
+            ""
+          )}
+        </StyledHamburgerMenuLi>
+        <StyledHamburgerMenuLi isVisible={isHamburgerMenuOpen}>
+          {isHamburgerMenuOpen ? (
             <StyledNavbarNavLink exact to="/about">
               About
             </StyledNavbarNavLink>
-          </StyledHamburgerMenuLi>
-          <StyledHamburgerMenuLi>
+          ) : (
+            ""
+          )}
+        </StyledHamburgerMenuLi>
+        <StyledHamburgerMenuLi isVisible={isHamburgerMenuOpen}>
+          {isHamburgerMenuOpen ? (
             <StyledNavbarNavLink exact to="/contact">
               Contact
             </StyledNavbarNavLink>
-          </StyledHamburgerMenuLi>
-          <StyledHamburgerMenuLi>
+          ) : (
+            ""
+          )}
+        </StyledHamburgerMenuLi>
+        <StyledHamburgerMenuLi isVisible={isHamburgerMenuOpen}>
+          {isHamburgerMenuOpen ? (
             <StyledNavbarNavLink exact to="/products">
               Products
             </StyledNavbarNavLink>
-          </StyledHamburgerMenuLi>
-        </StyledHamburgerMenuLinksWrapper>
-      ) : null}
+          ) : (
+            ""
+          )}
+        </StyledHamburgerMenuLi>
+      </StyledHamburgerMenuLinksWrapper>
     </>
   );
 };

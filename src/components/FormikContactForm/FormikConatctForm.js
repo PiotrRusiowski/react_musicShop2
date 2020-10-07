@@ -115,7 +115,7 @@ const FormikConatctForm = () => {
   const [isEmailError, setEmailError] = useState(false);
 
   return (
-    <div className="container">
+    <div className="container2">
       <StyledFormContact mobile>
         <Formik
           initialValues={{
