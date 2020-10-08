@@ -3,6 +3,7 @@ import RootContext from "../../context/context";
 import { Link } from "react-router-dom";
 import Button from "../../components/styledComponents/Button";
 import styled from "styled-components";
+import Line from "../../components/styledComponents/Line";
 
 const StyledProductTitle = styled.h2`
   font-weight: normal;
@@ -58,7 +59,7 @@ const Product = ({ name, desc, image, price }) => {
       >
         <StyledProductImg src={image} alt="" />
       </Link>
-      <div className="line2"></div>
+      <Line />
       <StyledProductDesc>
         {desc.slice(0, 70)}{" "}
         <Link

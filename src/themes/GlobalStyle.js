@@ -36,22 +36,7 @@ display:none
 }
 
 
-}
-.line2 {
-  width: 90%;
-  height: 1px;
-  background-color: #eeeeee;
-  /* background-color:black; */
-  margin: 2px 0;
-  border-radius:5px;
-}
-.line {
-  height: 90%;
-  width: 2px;
-  background-color: #eeeeee;
-  border-radius:5px;
-  
-}
+
 
 
 `;

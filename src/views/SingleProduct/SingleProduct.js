@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import arrowIcon from "../../assets/icons/back.svg";
 import styled from "styled-components";
+import Line from "../../components/styledComponents/Line";
 
 const StyledSingleProduct = styled.div`
   display: flex;
@@ -20,6 +21,11 @@ const StyledSingleProductWrapper = styled.div`
   box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.75);
   border-radius: 5px;
   padding: 10px;
+  @media (max-width: 769px) {
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 5% 5%;
+  }
 `;
 const StyledSingleProductWrapper1 = styled.div`
   flex-basis: 55%;
@@ -28,6 +34,9 @@ const StyledSingleProductWrapper1 = styled.div`
   flex-direction: column;
   justify-content: space-around;
   height: 100%;
+  @media (max-width: 769px) {
+    flex-basis: 30%;
+  }
 `;
 const StyledSingleProductWrapper2 = styled.div`
 flex-basis: 35%;
@@ -69,6 +78,16 @@ const StyledLinText = styled.p`
   color: black;
   text-decoration: none;
 `;
+const StyledVerticalLine = styled(Line)`
+  @media (max-width: 769px) {
+    display: none;
+  }
+`;
+const StyledLine = styled(Line)`
+  @media (min-width: 769px) {
+    display: none;
+  }
+`;
 
 const SingleProduct = (props) => {
   const { name, desc, image, price } = props.location.state;
@@ -79,7 +98,8 @@ const SingleProduct = (props) => {
           <h1>{name}</h1>
           <StyledSingleProductImg src={image} alt="singleProduct" />
         </StyledSingleProductWrapper1>
-        <div className="line"></div>
+        <StyledVerticalLine vertical />
+        <StyledLine />
         <StyledSingleProductWrapper2>
           <StyledSingleProductDesc>{desc}</StyledSingleProductDesc>
           <StyledSingleProductPrice>
