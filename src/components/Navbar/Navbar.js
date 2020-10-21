@@ -8,13 +8,13 @@ import styled, { css } from "styled-components";
 import HamburgerMenu from "react-hamburger-menu";
 
 const StyledNavbarNavLink = styled(NavLink)`
-  font-weight: bold;
+  font-weight: normal;
   font-size: 15px;
   letter-spacing: 3px;
   text-decoration: none;
   color: rgb(211, 197, 197);
   position: relative;
-  padding: 10px 0;
+  padding: 8px 0;
   :hover {
     color: white;
   }
@@ -23,7 +23,7 @@ const StyledNavbarNavLink = styled(NavLink)`
     bottom: 0;
     content: "";
     display: block;
-    height: 2px;
+    height: 1px;
     left: 50%;
     position: absolute;
     background: #fff;
@@ -42,7 +42,7 @@ const StyledNavbarNavLink = styled(NavLink)`
       bottom: 0;
       content: "";
       display: block;
-      height: 2px;
+      height: 1px;
       left: 50%;
       transform: translate(-50%);
       position: absolute;

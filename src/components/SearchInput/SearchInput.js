@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import RootContext from "../../context/context";
 import styled from "styled-components";
 import img from "../../assets/icons/search_whitex2.png";
+import Pulse from "react-reveal/Pulse";
 
 const StyledSearchInputWrapper = styled.div`
   height: 30px;
@@ -73,7 +74,11 @@ const SearchInput = () => {
 
   return (
     <StyledSearchInputWrapper>
-      <StyledInputIcon></StyledInputIcon>
+      <Pulse forever>
+        {" "}
+        <StyledInputIcon></StyledInputIcon>
+      </Pulse>
+
       <StyledSearchInput
         type="text"
         name="searchInput"

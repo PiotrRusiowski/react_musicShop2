@@ -3,12 +3,15 @@ import Navbar from "../../components/Navbar/Navbar";
 // import FormContact from "../../components/FormContact/FormContact";
 import GoogleMap from "../../components/GoogleMap/GoogleMap";
 import FormikContactForm from "../../components/FormikContactForm/FormikConatctForm";
+import Fade from "react-reveal/Fade";
 const Contact = () => {
   return (
     <>
-      <Navbar />
-      <GoogleMap />
-      <FormikContactForm />
+      <Fade delay={300}>
+        <GoogleMap />
+        <FormikContactForm />
+      </Fade>
+
       {/* <FormContact /> */}
     </>
   );

@@ -14,6 +14,9 @@ import img3 from "./assets/images/aboutSlider/img4.jpg";
 import GlobalStyle from "./themes/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import { mainTheme } from "./themes/mainTheme";
+import Navbar from "./components/Navbar/Navbar";
+import "./Root.css";
+import { CSSTransition } from "react-transition-group";
 
 const Root = () => {
   const getCartFromLocalStorage = () => {
@@ -310,13 +313,30 @@ const Root = () => {
             isFilterMenuOpen,
           }}
         >
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/about" component={About} />
-            <Route path="/contact" component={Contact} />
-            <Route exact path="/products" component={Products} />
-            <Route path="/products/:productName" component={SingleProduct} />
-          </Switch>
+          <Navbar />
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About}>
+            {/* {({ match }) => (
+              <CSSTransition
+                in={match != null}
+                timeout={{
+                  appear: 4000,
+                  enter: 2000,
+                  exit: 3000,
+                }}
+                classNames="page"
+                unmountOnExit
+              >
+                <div className="page">
+                  <About />
+                </div>
+              </CSSTransition>
+            )} */}
+          </Route>
+
+          <Route path="/contact" component={Contact} />
+          <Route exact path="/products" component={Products} />
+          <Route path="/products/:productName" component={SingleProduct} />
         </RootContext.Provider>
       </ThemeProvider>
     </BrowserRouter>

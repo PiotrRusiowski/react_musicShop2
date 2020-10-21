@@ -3,100 +3,20 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./FormikConatctForm.css";
 import Button from "../../components/styledComponents/Button";
-import styled, { css } from "styled-components";
 import Title from "../../components/styledComponents/Title";
+import Fade from "react-reveal/Fade";
+import {
+  StyledFormContact,
+  StyledForm,
+  StyledFormWrapper,
+  StyledFormInputWrapper,
+  StyledError,
+  StyledformInputError,
+  StyledField,
+  StyledTextArea,
+  StyledFormDesc,
+} from "./StyledFormikConatctForm";
 
-const StyledFormContact = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0 20px 0;
-  ${({ mobile }) =>
-    mobile &&
-    css`
-      @media (max-width: 712px) {
-        flex-direction: column-reverse;
-      }
-    `}
-`;
-const StyledForm = styled(Form)`
-  display: flex;
-  flex-direction: column;
-  flex-basis: 50%;
-  justify-content: space-between;
-`;
-
-const StyledFormWrapper = styled.div`
-  display: flex;
-  ${({ mobile }) =>
-    mobile &&
-    css`
-      @media (max-width: 712px) {
-        flex-direction: column;
-      }
-    `}
-`;
-const StyledFormInputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  margin-bottom: 20px;
-  :nth-child(1) {
-    margin-right: 20px;
-  }
-  ${({ mobile }) =>
-    mobile &&
-    css`
-      @media (max-width: 712px) {
-        :nth-child(1) {
-          margin-right: 0px;
-        }
-      }
-    `}
-`;
-const StyledError = styled.div`
-  border-radius: 5px;
-  margin-top: 5px;
-  margin-left: auto;
-  color: red;
-  font-weight: lighter;
-`;
-const StyledformInputError = styled.div`
-  padding: 15px 10px;
-
-  border: 1px solid red;
-  border-radius: 5px;
-  color: grey;
-  outline: none;
-`;
-
-const StyledField = styled(Field)`
-  padding: 15px 10px;
-
-  border: ${({ isError }) => (isError ? "1px solid red" : "none")};
-  border-radius: 5px;
-  background-color: #eeeeee;
-  outline: none;
-  color: grey;
-`;
-
-const StyledTextArea = styled(Field)`
-  padding: 15px 10px;
-  border: ${({ isError }) => (isError ? "1px solid red" : "none")};
-  border-radius: 5px;
-  margin-bottom: 10px;
-  background-color: #eeeeee;
-  outline: none;
-  resize: none;
-  height: 140px;
-`;
-
-const StyledFormDesc = styled.div`
-  flex-basis: 35%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  line-height: 1.4;
-`;
 const contactFormSchema = Yup.object().shape({
   email: Yup.string()
     .email("Twój mail jest niepoprawny")
@@ -163,10 +83,12 @@ const FormikConatctForm = () => {
                       placeholder="subject"
                       isError={isSubjectError}
                     />
+
                     <StyledError>
                       <ErrorMessage name="subject" />
                     </StyledError>
                   </StyledFormInputWrapper>
+
                   <StyledFormInputWrapper>
                     <StyledField
                       type="email"
@@ -181,6 +103,7 @@ const FormikConatctForm = () => {
                     </StyledError>
                   </StyledFormInputWrapper>
                 </StyledFormWrapper>
+
                 <StyledFormInputWrapper>
                   <StyledTextArea
                     name="message"
@@ -190,10 +113,12 @@ const FormikConatctForm = () => {
                     component="textarea"
                     isError={isMessageError}
                   />
+
                   <StyledError>
                     <ErrorMessage name="message" />
                   </StyledError>
                 </StyledFormInputWrapper>
+
                 <StyledFormInputWrapper>
                   <div>
                     <Field
@@ -207,13 +132,15 @@ const FormikConatctForm = () => {
                     <ErrorMessage name="akceptCheckBox" />
                   </div>
                 </StyledFormInputWrapper>
-                <Button
-                  small
-                  type="submit"
-                  onClick={validationInputsBorderColorChange}
-                >
-                  wyślij
-                </Button>
+                <Fade left>
+                  <Button
+                    small
+                    type="submit"
+                    onClick={validationInputsBorderColorChange}
+                  >
+                    wyślij
+                  </Button>
+                </Fade>
               </StyledForm>
             );
           }}

@@ -2,13 +2,14 @@ import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import ProdutcsList from "../../components/ProdutcsList/ProdutcsList";
 import ProductsFilterMenu from "../../components/ProductsFilterMenu/ProductsFilterMenu";
-
+import Fade from "react-reveal/Fade";
 const Produtcs = () => {
   return (
     <>
-      <Navbar />
       <ProductsFilterMenu />
-      <ProdutcsList />
+      <Fade delay={300}>
+        <ProdutcsList />
+      </Fade>
     </>
   );
 };

@@ -19,7 +19,8 @@ const Button = styled.button`
     css`
       background-color: ${({ theme }) => theme.lightBlue};
       margin-top: 0px;
-      margin-left: auto;
+      position: absolute;
+      right: 0;
       font-size: ${({ theme }) => theme.fontSize.xs};
       font-weight: bold;
       padding: 8px 30px;

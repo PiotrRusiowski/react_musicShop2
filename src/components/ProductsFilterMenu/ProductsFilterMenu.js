@@ -4,6 +4,7 @@ import CategoryFilter from "./CategoryFilter";
 import PriceRangeInput from "../PriceRangeInput/PriceRangeInput";
 import styled, { css } from "styled-components";
 import RootContext from "../../context/context";
+import Fade from "react-reveal/Fade";
 
 const StyledProductsFilterMenu = styled.div`
   display: flex;
@@ -41,7 +42,7 @@ const StyledFiltersWrapper = styled.div`
 const StyledFilterButton = styled.button`
   background-color: black;
   color: rgb(211, 197, 197);
-  font-weight: bold;
+  font-weight: normal;
   letter-spacing: 3px;
   border: none;
   cursor: pointer;
@@ -61,6 +62,7 @@ const ProductsFilterMenu = () => {
   const { handleFilterMenuOpen, isFilterMenuOpen } = context;
   return (
     <>
+      {/* <Fade left delay={1500}> */}
       <StyledProductsFilterMenu mobile>
         <SearchInput />
         <StyledFilterMenu isOpen={isFilterMenuOpen}>
@@ -80,6 +82,7 @@ const ProductsFilterMenu = () => {
           {isFilterMenuOpen ? "< Hide" : "More filter >"}
         </StyledFilterButton>
       </StyledProductsFilterMenu>
+      {/* </Fade> */}
     </>
   );
 };

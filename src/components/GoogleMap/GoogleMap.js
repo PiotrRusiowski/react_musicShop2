@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 import "./GoogleMap.css";
 import styled from "styled-components";
+import Jump from "react-reveal/Jump";
 
 const StyledGoogleMapWrapper = styled.div`
   height: 300px;
@@ -41,9 +42,11 @@ class GoogleMap extends Component {
           defaultZoom={this.props.zoom}
           yesIWantToUseGoogleMapApiInternals
         >
-          <StyledMarkerWrapper lat={52.247976} lng={21.015256}>
-            <StyledMarkerText>We are here</StyledMarkerText>
-          </StyledMarkerWrapper>
+          <Jump forever duration={1500}>
+            <StyledMarkerWrapper lat={52.247976} lng={21.015256}>
+              <StyledMarkerText>We are here</StyledMarkerText>
+            </StyledMarkerWrapper>
+          </Jump>
         </GoogleMapReact>
       </StyledGoogleMapWrapper>
     );

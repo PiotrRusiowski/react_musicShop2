@@ -8,12 +8,16 @@ import email from "../../assets/icons/footer/email.svg";
 import Button from "../../components/styledComponents/Button";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
+import Fade from "react-reveal/Fade";
+import HeadShake from "react-reveal/HeadShake";
 
 const StyledBaner = styled.div`
   width: 100%;
-  height: 90vh;
+  height: 89vh;
   position: relative;
   display: flex;
+  align-items: center;
+  justify-content: center;
   ${({ mobile }) =>
     mobile &&
     css`
@@ -38,10 +42,11 @@ const StyledBanerImg = styled.img`
 `;
 
 const StyledBanerItem = styled.div`
-  position: absolute;
+  /* position: absolute;
   top: 45%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+
   display: flex;
   flex-direction: column;
   justify-items: center;
@@ -49,7 +54,7 @@ const StyledBanerItem = styled.div`
   z-index: 2;
   background-color: rgba(255, 255, 255, 0.5);
   /* background-color: rgba(0, 0, 0, 0.5); */
-  width: 100%;
+  width: 100vw;
   padding: 20px;
 `;
 const StyledBanerTitle = styled.h1`
@@ -92,18 +97,24 @@ const Home = () => {
   const context = useContext(RootContext);
   return (
     <>
-      <Navbar />
       <StyledBaner mobile>
         <StyledBanerImg mobile src={context.banerImg} alt="audio" />
-        <StyledBanerItem>
-          <StyledBanerTitle>Tech.Music</StyledBanerTitle>
-          <StyledTitleSmall>authorized shop</StyledTitleSmall>
-          <Link to="/products">
-            {" "}
-            <Button>Products</Button>
-          </Link>
-        </StyledBanerItem>
-
+        <Fade delay={1000}>
+          <StyledBanerItem>
+            <Fade big delay={2000}>
+              <StyledBanerTitle>Tech.Music</StyledBanerTitle>
+              <StyledTitleSmall>authorized shop</StyledTitleSmall>
+              <Link to="/products">
+                {" "}
+                <Button>
+                  <HeadShake duration={2000} delay={3000}>
+                    Products
+                  </HeadShake>
+                </Button>
+              </Link>
+            </Fade>
+          </StyledBanerItem>
+        </Fade>
         <StyledFooter>
           <StyledFooterItem>
             <StyledFooterImg src={phone} alt="" />

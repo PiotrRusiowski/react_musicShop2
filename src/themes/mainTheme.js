@@ -5,6 +5,7 @@ export const mainTheme = {
 
   orange: "rgb(242, 216, 165)",
   blue: "#599ef8",
+  //#BC0524
 
   lightFont: 300,
   mediumFont: 400,

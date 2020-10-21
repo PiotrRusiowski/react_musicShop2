@@ -7,6 +7,7 @@ import Card from "../../components/styledComponents/Card";
 import img1 from "../../assets/icons/homeIcons/4k-black-48dp.svg";
 import img2 from "../../assets/icons/homeIcons/album-black-48dp.svg";
 import img3 from "../../assets/icons/homeIcons/queue_music-black-48dp.svg";
+import Fade from "react-reveal/Fade";
 
 const StyledAboutTitle = styled(Title)`
   margin-right: auto;
@@ -99,122 +100,125 @@ const StyledCardIcon = styled.img`
 const About = () => {
   return (
     <>
-      <Navbar />
-      <StyledSliderWrapper tablet>
-        <Slider />
-      </StyledSliderWrapper>
-      <StyledAboutWrapper>
-        <StyledAbout>
-          <StyledAboutTitle>About</StyledAboutTitle>
-          <StyledDescWrapper>
-            <StyledDesc>
-              <p>
-                <strong>Weee:</strong>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. <br />
-                Accusamus totam quibusdam inventore. Doloribus recusandae eum
-                consectetur quae unde quod <br /> blanditiis.oasdoho
-                soidhaodasdasd
-              </p>
-              <p>
-                <strong>Adress: </strong>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
-                dolor amet repellat quisquam labore natus asperiores incidunt
-                ex, rem, officia quod fugiat porro ipsam cum necessitatibus
-                nihil eveniet. Ut, iusto?
-              </p>
-              {/* <p>
-                <strong>About:</strong>0qo0qw0qw0
-              </p>
-              <br />
-              <p>
-                <strong>Adress</strong> asdomoodsam
-              </p> */}
-            </StyledDesc>
-            <StyledDesc>
-              <p>
-                <strong>Weee:</strong>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. <br />
-                Accusamus totam quibusdam inventore. Doloribus recusandae eum
-                consectetur quae unde quod <br /> blanditiis.oasdoho
-                soidhaodasdasd
-              </p>
-              <p>
-                <strong>Adress: </strong>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
-                dolor amet repellat quisquam labore natus asperiores incidunt
-                ex, rem, officia quod fugiat porro ipsam cum necessitatibus
-                nihil eveniet. Ut, iusto?
-              </p>
-              {/* <p>
-                <strong>About:</strong>0qo0qw0qw0
-              </p>
-              <br />
-              <p>
-                <strong>Adress</strong> asdomoodsam
-              </p> */}
-            </StyledDesc>
-          </StyledDescWrapper>
-        </StyledAbout>
-
-        <StyledSliderWrapper mobile>
+      <Fade delay={300}>
+        <StyledSliderWrapper tablet>
           <Slider />
         </StyledSliderWrapper>
-      </StyledAboutWrapper>
-      <StyledGrey>
-        <div className="container">
-          <StyledAboutWrapper2>
-            <StyledCard>
-              <StyledCardImg>
-                <StyledCardIcon src={img1}></StyledCardIcon>
-              </StyledCardImg>
-
-              <p>
-                <strong>About</strong>
+        <StyledAboutWrapper>
+          <StyledAbout>
+            <StyledAboutTitle>About</StyledAboutTitle>
+            <StyledDescWrapper>
+              <StyledDesc>
+                <p>
+                  <strong>Weee:</strong>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.{" "}
+                  <br />
+                  Accusamus totam quibusdam inventore. Doloribus recusandae eum
+                  consectetur quae unde quod <br /> blanditiis.oasdoho
+                  soidhaodasdasd
+                </p>
+                <p>
+                  <strong>Adress: </strong>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
+                  dolor amet repellat quisquam labore natus asperiores incidunt
+                  ex, rem, officia quod fugiat porro ipsam cum necessitatibus
+                  nihil eveniet. Ut, iusto?
+                </p>
+                {/* <p>
+                <strong>About:</strong>0qo0qw0qw0
               </p>
-
+              <br />
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-                commodi maxime iste qui iusto neque, quasi dignissimos,
-                suscipit, consequatur
+                <strong>Adress</strong> asdomoodsam
+              </p> */}
+              </StyledDesc>
+              <StyledDesc>
+                <p>
+                  <strong>Weee:</strong>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.{" "}
+                  <br />
+                  Accusamus totam quibusdam inventore. Doloribus recusandae eum
+                  consectetur quae unde quod <br /> blanditiis.oasdoho
+                  soidhaodasdasd
+                </p>
+                <p>
+                  <strong>Adress: </strong>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
+                  dolor amet repellat quisquam labore natus asperiores incidunt
+                  ex, rem, officia quod fugiat porro ipsam cum necessitatibus
+                  nihil eveniet. Ut, iusto?
+                </p>
+                {/* <p>
+                <strong>About:</strong>0qo0qw0qw0
               </p>
-            </StyledCard>
-
-            <StyledCard>
-              <StyledCardImg>
-                <StyledCardIcon src={img2}></StyledCardIcon>
-              </StyledCardImg>
-
+              <br />
               <p>
-                <strong>About</strong>
-              </p>
+                <strong>Adress</strong> asdomoodsam
+              </p> */}
+              </StyledDesc>
+            </StyledDescWrapper>
+          </StyledAbout>
 
-              <div className="line2"></div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-                commodi maxime iste qui iusto neque, quasi dignissimos,
-                suscipit, consequatur
-              </p>
-            </StyledCard>
+          <StyledSliderWrapper mobile>
+            <Slider />
+          </StyledSliderWrapper>
+        </StyledAboutWrapper>
+        <StyledGrey>
+          <div className="container">
+            <StyledAboutWrapper2>
+              <StyledCard>
+                <StyledCardImg>
+                  <StyledCardIcon src={img1}></StyledCardIcon>
+                </StyledCardImg>
 
-            <StyledCard>
-              <StyledCardImg>
-                <StyledCardIcon src={img3}></StyledCardIcon>
-              </StyledCardImg>
+                <p>
+                  <strong>About</strong>
+                </p>
 
-              <p>
-                <strong>About</strong>
-              </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
+                  commodi maxime iste qui iusto neque, quasi dignissimos,
+                  suscipit, consequatur
+                </p>
+              </StyledCard>
 
-              <div className="line2"></div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-                commodi maxime iste qui iusto neque, quasi dignissimos,
-                suscipit, consequatur
-              </p>
-            </StyledCard>
-          </StyledAboutWrapper2>
-        </div>
-      </StyledGrey>
+              <StyledCard>
+                <StyledCardImg>
+                  <StyledCardIcon src={img2}></StyledCardIcon>
+                </StyledCardImg>
+
+                <p>
+                  <strong>About</strong>
+                </p>
+
+                <div className="line2"></div>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
+                  commodi maxime iste qui iusto neque, quasi dignissimos,
+                  suscipit, consequatur
+                </p>
+              </StyledCard>
+
+              <StyledCard>
+                <StyledCardImg>
+                  <StyledCardIcon src={img3}></StyledCardIcon>
+                </StyledCardImg>
+
+                <p>
+                  <strong>About</strong>
+                </p>
+
+                <div className="line2"></div>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
+                  commodi maxime iste qui iusto neque, quasi dignissimos,
+                  suscipit, consequatur
+                </p>
+              </StyledCard>
+            </StyledAboutWrapper2>
+          </div>
+        </StyledGrey>
+      </Fade>
     </>
   );
 };
