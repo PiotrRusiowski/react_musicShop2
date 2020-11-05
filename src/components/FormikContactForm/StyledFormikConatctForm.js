@@ -1,4 +1,3 @@
-import Fade from "react-reveal/Fade";
 import { Form, Field } from "formik";
 import styled, { css } from "styled-components";
 export const StyledFormContact = styled.div`

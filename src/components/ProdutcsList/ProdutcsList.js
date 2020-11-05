@@ -24,21 +24,21 @@ const ProdutcsList = () => {
         {context.filteredProducts.length === 0 ? (
           <p>sorry, no products matched your search filters </p>
         ) : (
-          <StyledProductList>
+          <StyledProductList  >
             {context.filteredProducts.map((product) => {
               const {
                 productName,
                 productDesc,
                 productImage,
                 productPrice,
+                productId
               } = product;
               return (
                 <StyledCard
-                  onClick={() => {
-                    console.log("li");
-                  }}
+              key={productId}
                 >
                   <Product
+
                     name={productName}
                     desc={productDesc}
                     image={productImage}

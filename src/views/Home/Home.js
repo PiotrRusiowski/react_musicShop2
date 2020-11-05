@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import "./Home.css";
-import Navbar from "../../components/Navbar/Navbar";
 import RootContext from "../../context/context";
 import phone from "../../assets/icons/footer/phone.svg";
 import fb from "../../assets/icons/footer/facebook.svg";
@@ -9,7 +8,6 @@ import Button from "../../components/styledComponents/Button";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import Fade from "react-reveal/Fade";
-import HeadShake from "react-reveal/HeadShake";
 
 const StyledBaner = styled.div`
   width: 100%;
@@ -106,11 +104,7 @@ const Home = () => {
               <StyledTitleSmall>authorized shop</StyledTitleSmall>
               <Link to="/products">
                 {" "}
-                <Button>
-                  <HeadShake duration={2000} delay={3000}>
-                    Products
-                  </HeadShake>
-                </Button>
+                <Button>Products</Button>
               </Link>
             </Fade>
           </StyledBanerItem>

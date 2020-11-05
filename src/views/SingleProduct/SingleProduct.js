@@ -3,13 +3,16 @@ import { Link } from "react-router-dom";
 import arrowIcon from "../../assets/icons/back.svg";
 import styled from "styled-components";
 import Line from "../../components/styledComponents/Line";
-
+import Fade from "react-reveal/Fade";
 const StyledSingleProduct = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background-color: ${({ theme }) => theme.lightGrey};
+  @media (max-width: 769px) {
+    height: auto;
+  }
 `;
 const StyledSingleProductWrapper = styled.div`
   display: flex;
@@ -34,9 +37,6 @@ const StyledSingleProductWrapper1 = styled.div`
   flex-direction: column;
   justify-content: space-around;
   height: 100%;
-  @media (max-width: 769px) {
-    flex-basis: 30%;
-  }
 `;
 const StyledSingleProductWrapper2 = styled.div`
 flex-basis: 35%;
@@ -92,29 +92,31 @@ const StyledLine = styled(Line)`
 const SingleProduct = (props) => {
   const { name, desc, image, price } = props.location.state;
   return (
-    <StyledSingleProduct>
-      <StyledSingleProductWrapper>
-        <StyledSingleProductWrapper1>
-          <h1>{name}</h1>
-          <StyledSingleProductImg src={image} alt="singleProduct" />
-        </StyledSingleProductWrapper1>
-        <StyledVerticalLine vertical />
-        <StyledLine />
-        <StyledSingleProductWrapper2>
-          <StyledSingleProductDesc>{desc}</StyledSingleProductDesc>
-          <StyledSingleProductPrice>
-            <strong>Price: </strong>
-            {price}$
-          </StyledSingleProductPrice>
-          <StyledLink to="/products">
-            <StyledLinkBtn>
-              <StyledArrow src={arrowIcon} alt="go back" />
-            </StyledLinkBtn>
-            <StyledLinText>Back to products</StyledLinText>
-          </StyledLink>
-        </StyledSingleProductWrapper2>
-      </StyledSingleProductWrapper>
-    </StyledSingleProduct>
+    <Fade delay={300}>
+      <StyledSingleProduct>
+        <StyledSingleProductWrapper>
+          <StyledSingleProductWrapper1>
+            <h1>{name}</h1>
+            <StyledSingleProductImg src={image} alt="singleProduct" />
+          </StyledSingleProductWrapper1>
+          <StyledVerticalLine vertical />
+          <StyledLine />
+          <StyledSingleProductWrapper2>
+            <StyledSingleProductDesc>{desc}</StyledSingleProductDesc>
+            <StyledSingleProductPrice>
+              <strong>Price: </strong>
+              {price}$
+            </StyledSingleProductPrice>
+            <StyledLink to="/products">
+              <StyledLinkBtn>
+                <StyledArrow src={arrowIcon} alt="go back" />
+              </StyledLinkBtn>
+              <StyledLinText>Back to products</StyledLinText>
+            </StyledLink>
+          </StyledSingleProductWrapper2>
+        </StyledSingleProductWrapper>
+      </StyledSingleProduct>
+    </Fade>
   );
 };
 export default SingleProduct;

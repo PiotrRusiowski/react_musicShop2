@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./FormikConatctForm.css";
 import Button from "../../components/styledComponents/Button";
@@ -11,7 +11,6 @@ import {
   StyledFormWrapper,
   StyledFormInputWrapper,
   StyledError,
-  StyledformInputError,
   StyledField,
   StyledTextArea,
   StyledFormDesc,
@@ -145,6 +144,7 @@ const FormikConatctForm = () => {
             );
           }}
         </Formik>
+
         <StyledFormDesc>
           <h3 className="toOrder">To order:</h3>
           <p>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import RootContext from "./context/context";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import About from "./views/About/About";
 import Contact from "./views/Contact/Contact";
 import Home from "./views/Home/Home";
@@ -16,7 +16,6 @@ import { ThemeProvider } from "styled-components";
 import { mainTheme } from "./themes/mainTheme";
 import Navbar from "./components/Navbar/Navbar";
 import "./Root.css";
-import { CSSTransition } from "react-transition-group";
 
 const Root = () => {
   const getCartFromLocalStorage = () => {
@@ -194,6 +193,9 @@ const Root = () => {
         break;
       case "categoryInput":
         setCategoryValue(value);
+        break;
+      default:
+        break;
     }
   };
   const handlePriceChange = (e) => {

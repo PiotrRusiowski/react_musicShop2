@@ -9,7 +9,6 @@ import RootContext from "../../context/context";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
-    margin: theme.spacing(1),
     minWidth: 100,
     margin: 0,
     padding: 2,

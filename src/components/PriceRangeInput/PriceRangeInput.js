@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import RootContext from "../../context/context";
 import "./PriceRangeInput.css";
 import styled from "styled-components";
-import { makeStyles } from "@material-ui/core/styles";
 
 const StyledPriceInputWrapper = styled.div`
   display: flex;
@@ -33,7 +32,7 @@ const PriceRangeInput = () => {
     maxValue,
     minValue,
     priceValue,
-    filterMenager,
+
     handlePriceChange,
   } = context;
 

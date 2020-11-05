@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../../components/Navbar/Navbar";
 import Slider from "../../components/Carousel/Carousel";
 import styled, { css } from "styled-components";
 import Title from "../../components/styledComponents/Title";
@@ -85,8 +84,6 @@ const StyledCard = styled(Card)`
   @media (max-width: 770px) {
     flex-basis: 30%;
   }
-  @media (max-width: 710px) {
-  }
 `;
 const StyledCardImg = styled.div`
   width: 90%;
@@ -165,57 +162,59 @@ const About = () => {
         </StyledAboutWrapper>
         <StyledGrey>
           <div className="container">
-            <StyledAboutWrapper2>
-              <StyledCard>
-                <StyledCardImg>
-                  <StyledCardIcon src={img1}></StyledCardIcon>
-                </StyledCardImg>
+            <Fade delay={1000} bottom>
+              <StyledAboutWrapper2>
+                <StyledCard>
+                  <StyledCardImg>
+                    <StyledCardIcon src={img1}></StyledCardIcon>
+                  </StyledCardImg>
 
-                <p>
-                  <strong>About</strong>
-                </p>
+                  <p>
+                    <strong>About</strong>
+                  </p>
 
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-                  commodi maxime iste qui iusto neque, quasi dignissimos,
-                  suscipit, consequatur
-                </p>
-              </StyledCard>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Quam commodi maxime iste qui iusto neque, quasi dignissimos,
+                    suscipit, consequatur
+                  </p>
+                </StyledCard>
 
-              <StyledCard>
-                <StyledCardImg>
-                  <StyledCardIcon src={img2}></StyledCardIcon>
-                </StyledCardImg>
+                <StyledCard>
+                  <StyledCardImg>
+                    <StyledCardIcon src={img2}></StyledCardIcon>
+                  </StyledCardImg>
 
-                <p>
-                  <strong>About</strong>
-                </p>
+                  <p>
+                    <strong>About</strong>
+                  </p>
 
-                <div className="line2"></div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-                  commodi maxime iste qui iusto neque, quasi dignissimos,
-                  suscipit, consequatur
-                </p>
-              </StyledCard>
+                  <div className="line2"></div>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Quam commodi maxime iste qui iusto neque, quasi dignissimos,
+                    suscipit, consequatur
+                  </p>
+                </StyledCard>
 
-              <StyledCard>
-                <StyledCardImg>
-                  <StyledCardIcon src={img3}></StyledCardIcon>
-                </StyledCardImg>
+                <StyledCard>
+                  <StyledCardImg>
+                    <StyledCardIcon src={img3}></StyledCardIcon>
+                  </StyledCardImg>
 
-                <p>
-                  <strong>About</strong>
-                </p>
+                  <p>
+                    <strong>About</strong>
+                  </p>
 
-                <div className="line2"></div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-                  commodi maxime iste qui iusto neque, quasi dignissimos,
-                  suscipit, consequatur
-                </p>
-              </StyledCard>
-            </StyledAboutWrapper2>
+                  <div className="line2"></div>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Quam commodi maxime iste qui iusto neque, quasi dignissimos,
+                    suscipit, consequatur
+                  </p>
+                </StyledCard>
+              </StyledAboutWrapper2>
+            </Fade>
           </div>
         </StyledGrey>
       </Fade>
