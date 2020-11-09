@@ -212,6 +212,11 @@ const Navbar = () => {
                 Home
               </StyledNavbarNavLink>
             </StyledNavbarListElement>
+            <StyledNavbarListElement>
+              <StyledNavbarNavLink exact to="/products">
+                Products
+              </StyledNavbarNavLink>
+            </StyledNavbarListElement>
 
             <StyledNavbarListElement>
               <StyledNavbarNavLink exact to="/about">
@@ -223,11 +228,7 @@ const Navbar = () => {
                 Contact
               </StyledNavbarNavLink>
             </StyledNavbarListElement>
-            <StyledNavbarListElement>
-              <StyledNavbarNavLink exact to="/products">
-                Products
-              </StyledNavbarNavLink>
-            </StyledNavbarListElement>
+
             <li>
               <StyledCard onClick={handleCartOpen}>
                 <StyledCardImg img src={cartIcon} alt="cart" />
@@ -249,6 +250,15 @@ const Navbar = () => {
           ) : (
             ""
           )}
+          <StyledHamburgerMenuLi isVisible={isHamburgerMenuOpen}>
+            {isHamburgerMenuOpen ? (
+              <StyledNavbarNavLink exact to="/products">
+                Products
+              </StyledNavbarNavLink>
+            ) : (
+              ""
+            )}
+          </StyledHamburgerMenuLi>
         </StyledHamburgerMenuLi>
         <StyledHamburgerMenuLi isVisible={isHamburgerMenuOpen}>
           {isHamburgerMenuOpen ? (
@@ -263,15 +273,6 @@ const Navbar = () => {
           {isHamburgerMenuOpen ? (
             <StyledNavbarNavLink exact to="/contact">
               Contact
-            </StyledNavbarNavLink>
-          ) : (
-            ""
-          )}
-        </StyledHamburgerMenuLi>
-        <StyledHamburgerMenuLi isVisible={isHamburgerMenuOpen}>
-          {isHamburgerMenuOpen ? (
-            <StyledNavbarNavLink exact to="/products">
-              Products
             </StyledNavbarNavLink>
           ) : (
             ""

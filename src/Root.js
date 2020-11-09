@@ -16,7 +16,8 @@ import { ThemeProvider } from "styled-components";
 import { mainTheme } from "./themes/mainTheme";
 import Navbar from "./components/Navbar/Navbar";
 import "./Root.css";
-
+import { transitions, positions, Provider as AlertProvider } from "react-alert";
+import AlertTemplate from "react-alert-template-basic";
 const Root = () => {
   const getCartFromLocalStorage = () => {
     let localStorageCart;
@@ -276,49 +277,57 @@ const Root = () => {
 
     return () => clearInterval(timer);
   });
+  const alertOptions = {
+    // you can also just use 'bottom center'
+    position: positions.TOP_CENTER,
+    timeout: 3000,
 
+    // you can also just use 'scale'
+    transition: transitions.SCALE,
+  };
   return (
     <BrowserRouter>
-      <GlobalStyle />
-      <ThemeProvider theme={mainTheme}>
-        <RootContext.Provider
-          value={{
-            cart,
-            isCartOpen,
-            cartCounter,
-            searchValue,
-            products,
-            minValue,
-            maxValue,
-            priceValue,
-            total,
-            categoryValue,
-            filteredProducts,
-            banerImg,
-            handleFilterMenuOpen,
+      <AlertProvider template={AlertTemplate} {...alertOptions}>
+        <GlobalStyle />
+        <ThemeProvider theme={mainTheme}>
+          <RootContext.Provider
+            value={{
+              cart,
+              isCartOpen,
+              cartCounter,
+              searchValue,
+              products,
+              minValue,
+              maxValue,
+              priceValue,
+              total,
+              categoryValue,
+              filteredProducts,
+              banerImg,
+              handleFilterMenuOpen,
 
-            increseProductQuantity,
-            handleDuplicateInCart,
-            resetFilters,
-            removeProductFromCart,
-            addToCart,
-            increaseCartCounter,
-            handleCartOpen,
-            handleCartClose,
-            filterMenager,
-            decreseProductQuantity,
-            clearCart,
-            resetCartCounter,
-            handleHamburgerMenuOpen,
-            isHamburgerMenuOpen,
-            handlePriceChange,
-            isFilterMenuOpen,
-          }}
-        >
-          <Navbar />
-          <Route exact path="/" component={Home} />
-          <Route path="/about" component={About}>
-            {/* {({ match }) => (
+              increseProductQuantity,
+              handleDuplicateInCart,
+              resetFilters,
+              removeProductFromCart,
+              addToCart,
+              increaseCartCounter,
+              handleCartOpen,
+              handleCartClose,
+              filterMenager,
+              decreseProductQuantity,
+              clearCart,
+              resetCartCounter,
+              handleHamburgerMenuOpen,
+              isHamburgerMenuOpen,
+              handlePriceChange,
+              isFilterMenuOpen,
+            }}
+          >
+            <Navbar />
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About}>
+              {/* {({ match }) => (
               <CSSTransition
                 in={match != null}
                 timeout={{
@@ -334,13 +343,14 @@ const Root = () => {
                 </div>
               </CSSTransition>
             )} */}
-          </Route>
+            </Route>
 
-          <Route path="/contact" component={Contact} />
-          <Route exact path="/products" component={Products} />
-          <Route path="/products/:productName" component={SingleProduct} />
-        </RootContext.Provider>
-      </ThemeProvider>
+            <Route path="/contact" component={Contact} />
+            <Route exact path="/products" component={Products} />
+            <Route path="/products/:productName" component={SingleProduct} />
+          </RootContext.Provider>
+        </ThemeProvider>
+      </AlertProvider>
     </BrowserRouter>
   );
 };

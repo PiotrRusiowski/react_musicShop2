@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import RootContext from "../../context/context";
 import { Link } from "react-router-dom";
 import arrowIcon from "../../assets/icons/back.svg";
 import styled from "styled-components";
 import Line from "../../components/styledComponents/Line";
 import Fade from "react-reveal/Fade";
+import Button from "../../components/styledComponents/Button";
+import { useAlert } from "react-alert";
+
 const StyledSingleProduct = styled.div`
   display: flex;
   justify-content: center;
@@ -90,12 +94,20 @@ const StyledLine = styled(Line)`
 `;
 
 const SingleProduct = (props) => {
+  const alert = useAlert();
+  const context = useContext(RootContext);
+  const { addToCart, increaseCartCounter, handleDuplicateInCart } = context;
   const { name, desc, image, price } = props.location.state;
   return (
     <Fade delay={300}>
       <StyledSingleProduct>
         <StyledSingleProductWrapper>
           <StyledSingleProductWrapper1>
+            <StyledLink to="/products">
+              <StyledLinkBtn>
+                <StyledArrow src={arrowIcon} alt="go back" />
+              </StyledLinkBtn>
+            </StyledLink>
             <h1>{name}</h1>
             <StyledSingleProductImg src={image} alt="singleProduct" />
           </StyledSingleProductWrapper1>
@@ -107,12 +119,18 @@ const SingleProduct = (props) => {
               <strong>Price: </strong>
               {price}$
             </StyledSingleProductPrice>
-            <StyledLink to="/products">
-              <StyledLinkBtn>
-                <StyledArrow src={arrowIcon} alt="go back" />
-              </StyledLinkBtn>
-              <StyledLinText>Back to products</StyledLinText>
-            </StyledLink>
+            <Button
+              addBtn
+              onClick={() => {
+                handleDuplicateInCart(name);
+                addToCart(name);
+                increaseCartCounter();
+                alert.success(`${name}`);
+              }}
+              className="addToCart_btn"
+            >
+              Add to cart
+            </Button>
           </StyledSingleProductWrapper2>
         </StyledSingleProductWrapper>
       </StyledSingleProduct>

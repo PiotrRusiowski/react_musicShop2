@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Button from "../../components/styledComponents/Button";
 import styled from "styled-components";
 import Line from "../../components/styledComponents/Line";
+import { useAlert } from "react-alert";
 
 const StyledProductTitle = styled.h2`
   font-weight: normal;
@@ -16,6 +17,7 @@ const StyledProductPrice = styled.h4`
   font-weight: lighter;
 `;
 const StyledProductImg = styled.img`
+  object-fit: contain;
   height: 190px;
   width: 200px;
   margin-bottom: 10px;
@@ -41,6 +43,7 @@ const StyledReadMoreBtn = styled.button`
 const Product = ({ name, desc, image, price }) => {
   const context = useContext(RootContext);
   const { addToCart, increaseCartCounter, handleDuplicateInCart } = context;
+  const alert = useAlert();
 
   return (
     <>
@@ -82,6 +85,7 @@ const Product = ({ name, desc, image, price }) => {
           handleDuplicateInCart(name);
           addToCart(name);
           increaseCartCounter();
+          alert.success(`${name}`);
         }}
         className="addToCart_btn"
       >

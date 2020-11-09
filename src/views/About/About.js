@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "../../components/Carousel/Carousel";
 import styled, { css } from "styled-components";
 import Title from "../../components/styledComponents/Title";
@@ -94,7 +94,11 @@ const StyledCardIcon = styled.img`
   height: 100%;
   width: 100%;
 `;
+
 const About = () => {
+  useEffect(() => {
+    document.title = "About";
+  }, []);
   return (
     <>
       <Fade delay={300}>
