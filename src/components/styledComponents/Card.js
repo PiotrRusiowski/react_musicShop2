@@ -12,5 +12,10 @@ const Card = styled.li`
   align-items: center;
   transition: 0.3s;
   border-radius: 5px;
+  box-shadow: ${(props) => props.boxShadow || "none"};
+  background-color: ${(props) => props.bgc || "initial"};
+  :hover {
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.75);
+  }
 `;
 export default Card;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import RootContext from "./context/context";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import About from "./views/About/About";
 import Contact from "./views/Contact/Contact";
 import Home from "./views/Home/Home";
@@ -14,10 +14,10 @@ import img3 from "./assets/images/aboutSlider/img4.jpg";
 import GlobalStyle from "./themes/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import { mainTheme } from "./themes/mainTheme";
-import Navbar from "./components/Navbar/Navbar";
-import "./Root.css";
 import { transitions, positions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
+import MainTemplate from "./templates/MainTemplate";
+
 const Root = () => {
   const getCartFromLocalStorage = () => {
     let localStorageCart;
@@ -55,6 +55,27 @@ const Root = () => {
   const [imgCounter, setImgCounter] = useState(0);
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+  const [popularTodayArray, setPopularTodayArray] = useState([]);
+  const [isScrollUpArrowVisible, setIsScrollUpArrowVisible] = useState(false);
+  const [isScrollDownArrowVisible, setIsScrollDownArrowVisible] = useState(
+    true
+  );
+
+  const toggleScrollArrowVisibility = () => {
+    if (!isScrollUpArrowVisible && window.pageYOffset > 200) {
+      setIsScrollUpArrowVisible(true);
+    } else if (isScrollUpArrowVisible && window.pageYOffset <= 200) {
+      setIsScrollUpArrowVisible(false);
+    }
+    if (!isScrollDownArrowVisible && window.pageYOffset < 100) {
+      setIsScrollDownArrowVisible(true);
+    } else if (isScrollDownArrowVisible && window.pageYOffset >= 100) {
+      setIsScrollDownArrowVisible(false);
+    }
+  };
+
+  window.addEventListener("scroll", toggleScrollArrowVisibility);
+  // window.addEventListener("scroll", toggleScrollDownVisibility);
 
   const handleHamburgerMenuOpen = () => {
     setIsHamburgerMenuOpen(!isHamburgerMenuOpen);
@@ -114,6 +135,13 @@ const Root = () => {
 
       setProducts(contentfulProducts);
       setFilteredProducts(contentfulProducts);
+
+      const mixedProducts = contentfulProducts.sort(() => 0.5 - Math.random());
+
+      let selectedMixedProducts = mixedProducts.slice(0, 3);
+      setPopularTodayArray(selectedMixedProducts);
+      console.log(selectedMixedProducts);
+      console.log(products); //??????
     }
   };
 
@@ -277,12 +305,17 @@ const Root = () => {
 
     return () => clearInterval(timer);
   });
+
+  const getPopularTodayArray = () => {};
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     getPopularTodayArray();
+  //   }, 5000);
+  // }, []);
+
   const alertOptions = {
-    // you can also just use 'bottom center'
     position: positions.TOP_CENTER,
     timeout: 3000,
-
-    // you can also just use 'scale'
     transition: transitions.SCALE,
   };
   return (
@@ -304,6 +337,8 @@ const Root = () => {
               categoryValue,
               filteredProducts,
               banerImg,
+              isScrollDownArrowVisible,
+
               handleFilterMenuOpen,
 
               increseProductQuantity,
@@ -322,32 +357,23 @@ const Root = () => {
               isHamburgerMenuOpen,
               handlePriceChange,
               isFilterMenuOpen,
+              popularTodayArray,
+              toggleScrollArrowVisibility,
+              isScrollUpArrowVisible,
             }}
           >
-            <Navbar />
-            <Route exact path="/" component={Home} />
-            <Route path="/about" component={About}>
-              {/* {({ match }) => (
-              <CSSTransition
-                in={match != null}
-                timeout={{
-                  appear: 4000,
-                  enter: 2000,
-                  exit: 3000,
-                }}
-                classNames="page"
-                unmountOnExit
-              >
-                <div className="page">
-                  <About />
-                </div>
-              </CSSTransition>
-            )} */}
-            </Route>
-
-            <Route path="/contact" component={Contact} />
-            <Route exact path="/products" component={Products} />
-            <Route path="/products/:productName" component={SingleProduct} />
+            <MainTemplate>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/about" component={About} />
+                <Route path="/contact" component={Contact} />
+                <Route exact path="/products" component={Products} />
+                <Route
+                  path="/products/:productName"
+                  component={SingleProduct}
+                />
+              </Switch>
+            </MainTemplate>
           </RootContext.Provider>
         </ThemeProvider>
       </AlertProvider>

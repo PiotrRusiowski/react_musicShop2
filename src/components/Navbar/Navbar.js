@@ -53,6 +53,8 @@ const StyledNavbarNavLink = styled(NavLink)`
   }
 `;
 
+const StyledNavbar = styled.div``;
+
 const StyledNavbarWrapper = styled.div`
   display: flex;
   list-style: none;
@@ -82,6 +84,7 @@ const StyledNavbarListElement = styled.li`
   margin: 0 20px 0 20px;
   padding: 10px 0;
   position: relative;
+  z-index: 100;
 `;
 const StyledCard = styled.button`
   position: relative;
@@ -184,72 +187,74 @@ const Navbar = () => {
 
   return (
     <>
-      <StyledNavbarWrapper>
-        <div className="container">
-          <StyledLogo src={logo} />
-        </div>
-        <StyledCard hamburgerCart onClick={handleCartOpen}>
-          <StyledCardImg img src={cartIcon} alt="cart" />
-          <StyledCardCounter>{cartCounter}</StyledCardCounter>
-        </StyledCard>
+      <StyledNavbar>
+        <StyledNavbarWrapper>
+          <div className="container">
+            <StyledLogo src={logo} />
+          </div>
+          <StyledCard hamburgerCart onClick={handleCartOpen}>
+            <StyledCardImg img src={cartIcon} alt="cart" />
+            <StyledCardCounter>{cartCounter}</StyledCardCounter>
+          </StyledCard>
 
-        <StyledHamburgerMenu
-          isOpen={isHamburgerMenuOpen}
-          menuClicked={handleHamburgerMenuOpen}
-          width={28}
-          height={22}
-          strokeWidth={3}
-          rotate={0}
-          color="white"
-          borderRadius={0}
-          animationDuration={0.3}
-        />
+          <StyledHamburgerMenu
+            isOpen={isHamburgerMenuOpen}
+            menuClicked={handleHamburgerMenuOpen}
+            width={28}
+            height={22}
+            strokeWidth={3}
+            rotate={0}
+            color="white"
+            borderRadius={0}
+            animationDuration={0.3}
+          />
 
-        <div className="container">
-          <StyledNavbarList>
-            <StyledNavbarListElement>
+          <div className="container">
+            <StyledNavbarList>
+              <StyledNavbarListElement>
+                <StyledNavbarNavLink exact to="/">
+                  Home
+                </StyledNavbarNavLink>
+              </StyledNavbarListElement>
+              <StyledNavbarListElement>
+                <StyledNavbarNavLink exact to="/products">
+                  Products
+                </StyledNavbarNavLink>
+              </StyledNavbarListElement>
+
+              <StyledNavbarListElement>
+                <StyledNavbarNavLink exact to="/about">
+                  About
+                </StyledNavbarNavLink>
+              </StyledNavbarListElement>
+              <StyledNavbarListElement>
+                <StyledNavbarNavLink exact to="/contact">
+                  Contact
+                </StyledNavbarNavLink>
+              </StyledNavbarListElement>
+
+              <li>
+                <StyledCard onClick={handleCartOpen}>
+                  <StyledCardImg img src={cartIcon} alt="cart" />
+                  <StyledCardCounter>{cartCounter}</StyledCardCounter>
+                </StyledCard>
+              </li>
+              <li>
+                <Cart />
+              </li>
+            </StyledNavbarList>
+          </div>
+        </StyledNavbarWrapper>
+        <StyledHamburgerMenuLinksWrapper isOpen={isHamburgerMenuOpen}>
+          <StyledHamburgerMenuLi isVisible={isHamburgerMenuOpen}>
+            {isHamburgerMenuOpen ? (
               <StyledNavbarNavLink exact to="/">
                 Home
               </StyledNavbarNavLink>
-            </StyledNavbarListElement>
-            <StyledNavbarListElement>
-              <StyledNavbarNavLink exact to="/products">
-                Products
-              </StyledNavbarNavLink>
-            </StyledNavbarListElement>
-
-            <StyledNavbarListElement>
-              <StyledNavbarNavLink exact to="/about">
-                About
-              </StyledNavbarNavLink>
-            </StyledNavbarListElement>
-            <StyledNavbarListElement>
-              <StyledNavbarNavLink exact to="/contact">
-                Contact
-              </StyledNavbarNavLink>
-            </StyledNavbarListElement>
-
-            <li>
-              <StyledCard onClick={handleCartOpen}>
-                <StyledCardImg img src={cartIcon} alt="cart" />
-                <StyledCardCounter>{cartCounter}</StyledCardCounter>
-              </StyledCard>
-            </li>
-            <li>
-              <Cart />
-            </li>
-          </StyledNavbarList>
-        </div>
-      </StyledNavbarWrapper>
-      <StyledHamburgerMenuLinksWrapper isOpen={isHamburgerMenuOpen}>
-        <StyledHamburgerMenuLi isVisible={isHamburgerMenuOpen}>
-          {isHamburgerMenuOpen ? (
-            <StyledNavbarNavLink exact to="/">
-              Home
-            </StyledNavbarNavLink>
-          ) : (
-            ""
-          )}
+            ) : (
+              ""
+            )}
+          </StyledHamburgerMenuLi>
           <StyledHamburgerMenuLi isVisible={isHamburgerMenuOpen}>
             {isHamburgerMenuOpen ? (
               <StyledNavbarNavLink exact to="/products">
@@ -259,26 +264,27 @@ const Navbar = () => {
               ""
             )}
           </StyledHamburgerMenuLi>
-        </StyledHamburgerMenuLi>
-        <StyledHamburgerMenuLi isVisible={isHamburgerMenuOpen}>
-          {isHamburgerMenuOpen ? (
-            <StyledNavbarNavLink exact to="/about">
-              About
-            </StyledNavbarNavLink>
-          ) : (
-            ""
-          )}
-        </StyledHamburgerMenuLi>
-        <StyledHamburgerMenuLi isVisible={isHamburgerMenuOpen}>
-          {isHamburgerMenuOpen ? (
-            <StyledNavbarNavLink exact to="/contact">
-              Contact
-            </StyledNavbarNavLink>
-          ) : (
-            ""
-          )}
-        </StyledHamburgerMenuLi>
-      </StyledHamburgerMenuLinksWrapper>
+
+          <StyledHamburgerMenuLi isVisible={isHamburgerMenuOpen}>
+            {isHamburgerMenuOpen ? (
+              <StyledNavbarNavLink exact to="/about">
+                About
+              </StyledNavbarNavLink>
+            ) : (
+              ""
+            )}
+          </StyledHamburgerMenuLi>
+          <StyledHamburgerMenuLi isVisible={isHamburgerMenuOpen}>
+            {isHamburgerMenuOpen ? (
+              <StyledNavbarNavLink exact to="/contact">
+                Contact
+              </StyledNavbarNavLink>
+            ) : (
+              ""
+            )}
+          </StyledHamburgerMenuLi>
+        </StyledHamburgerMenuLinksWrapper>
+      </StyledNavbar>
     </>
   );
 };

@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import Product from "../Product/Product";
-import RootContext from "../../context/context";
+
 import styled from "styled-components";
 import Card from "../styledComponents/Card";
 
@@ -10,41 +10,37 @@ const StyledProductList = styled.ul`
   padding: 3rem 0;
   justify-content: space-around;
 `;
-const StyledCard = styled(Card)`
-  :hover {
-    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.75);
-  }
-`;
-const ProdutcsList = () => {
-  const context = useContext(RootContext);
 
+const ProdutcsList = ({ product, hover, boxShadow, bgc }) => {
   return (
     <>
       <div className="container2">
-        {context.filteredProducts.length === 0 ? (
+        {product.length === 0 ? (
           <p>sorry, no products matched your search filters </p>
         ) : (
-          <StyledProductList  >
-            {context.filteredProducts.map((product) => {
+          <StyledProductList>
+            {product.map((product) => {
               const {
                 productName,
                 productDesc,
                 productImage,
                 productPrice,
-                productId
+                productId,
               } = product;
               return (
-                <StyledCard
-              key={productId}
+                <Card
+                  hover={hover}
+                  key={productId}
+                  boxShadow={boxShadow}
+                  bgc={bgc}
                 >
                   <Product
-
                     name={productName}
                     desc={productDesc}
                     image={productImage}
                     price={productPrice}
                   />
-                </StyledCard>
+                </Card>
               );
             })}
           </StyledProductList>

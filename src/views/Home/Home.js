@@ -8,14 +8,19 @@ import Button from "../../components/styledComponents/Button";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import Fade from "react-reveal/Fade";
+import ProdutcsList from "../../components/ProdutcsList/ProdutcsList";
+import downArrow from "../../assets/icons/down-arrow.svg";
+import ArrowButton from "../../components/styledComponents/ArrowButton";
+import Arrow from "../../components/styledComponents/Arrow";
+import { animateScroll as scroll } from "react-scroll";
 
 const StyledBaner = styled.div`
-  width: 100%;
-  height: 89vh;
+  height: 75vh;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   ${({ mobile }) =>
     mobile &&
     css`
@@ -25,11 +30,13 @@ const StyledBaner = styled.div`
     `}
 `;
 const StyledBanerImg = styled.img`
+  overflow: hidden;
   width: 100%;
   height: 100%;
   animation: img 8s;
   z-index: -99;
   position: absolute;
+
   ${({ mobile }) =>
     mobile &&
     css`
@@ -91,38 +98,106 @@ const StyledFooterContact = styled.div`
   margin-left: 2px;
 `;
 
+const StyledHome = styled.div`
+  width: 100vw;
+`;
+const StyledPopularSection = styled.div`
+  background-color: ${({ theme }) => theme.lightGrey};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100px;
+  width: 100%;
+`;
+
+const StyledPopularSectionWrapper1 = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+`;
+const StyledArrowButtonWrapper = styled.div`
+  /* border: 2px solid black; */
+
+  cursor: pointer;
+  z-index: 100;
+  position: fixed;
+  width: 80%;
+  right: 10%;
+  bottom: 2%;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: "none";
+  justify-content: center;
+  align-items: center;
+  display: ${({ isDownVisible }) => (isDownVisible ? "flex" : "none")};
+  background-color: yellow;
+  :hover {
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.75);
+  }
+`;
+const boxShadow = "0px 5px 15px 0px rgba(0, 0, 0, 0.75)";
+const bgc = "white";
+const StyledArrowButtonContent = styled.h1`
+  padding: 5px 70px;
+`;
+
 const Home = () => {
   const context = useContext(RootContext);
+  const { banerImg, popularTodayArray, isScrollDownArrowVisible } = context;
+
   return (
     <>
-      <StyledBaner mobile>
-        <StyledBanerImg mobile src={context.banerImg} alt="audio" />
-        <Fade delay={1000}>
-          <StyledBanerItem>
-            <Fade big delay={2000}>
-              <StyledBanerTitle>Tech.Music</StyledBanerTitle>
-              <StyledTitleSmall>authorized shop</StyledTitleSmall>
-              <Link to="/products">
-                {" "}
-                <Button>Products</Button>
-              </Link>
-            </Fade>
-          </StyledBanerItem>
-        </Fade>
-        <StyledFooter>
-          <StyledFooterItem>
-            <StyledFooterImg src={phone} alt="" />
-            <StyledFooterContact href="#">(022)123-456-123</StyledFooterContact>
-          </StyledFooterItem>
-          <StyledFooterItem>
-            <StyledFooterImg src={email} alt="" />
-            <StyledFooterContact>musicshop122@gmail.com</StyledFooterContact>
-          </StyledFooterItem>
-          <StyledFooterItem>
-            <StyledFooterImg src={fb} alt="" />
-          </StyledFooterItem>
-        </StyledFooter>
-      </StyledBaner>
+      <StyledHome>
+        <StyledBaner mobile>
+          <StyledBanerImg mobile src={banerImg} alt="audio" />
+          <Fade delay={1000}>
+            <StyledArrowButtonWrapper
+              onClick={() => scroll.scrollToBottom()}
+              isDownVisible={isScrollDownArrowVisible}
+            >
+              <Arrow sale src={downArrow} />
+              <Arrow sale src={downArrow} />
+              <StyledArrowButtonContent>
+                Last Day Sale -30%
+              </StyledArrowButtonContent>
+              <Arrow sale src={downArrow} />
+              <Arrow sale src={downArrow} />
+              {/* <ArrowButton scrollDownButton> */}
+
+              {/* </ArrowButton> */}
+            </StyledArrowButtonWrapper>
+
+            <StyledBanerItem>
+              <Fade big delay={2000}>
+                <StyledBanerTitle>Tech.Music</StyledBanerTitle>
+                <StyledTitleSmall>authorized shop</StyledTitleSmall>
+                {/* <Link to="/products">
+                  <Button>Products</Button>
+                </Link> */}
+              </Fade>
+              {/* <StyledArrowButtonWrapper> */}
+
+              {/* </StyledArrowButtonWrapper> */}
+            </StyledBanerItem>
+          </Fade>
+        </StyledBaner>
+        <StyledPopularSection>
+          <StyledPopularSectionWrapper1>
+            <Link to="/products">
+              <Button>Click to see all produtsc</Button>
+            </Link>
+          </StyledPopularSectionWrapper1>
+
+          <Fade left delay={200}>
+            <ProdutcsList
+              product={popularTodayArray}
+              boxShadow={boxShadow}
+              bgc={bgc}
+            />
+          </Fade>
+        </StyledPopularSection>
+      </StyledHome>
     </>
   );
 };

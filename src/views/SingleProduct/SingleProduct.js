@@ -7,6 +7,8 @@ import Line from "../../components/styledComponents/Line";
 import Fade from "react-reveal/Fade";
 import Button from "../../components/styledComponents/Button";
 import { useAlert } from "react-alert";
+import ArrowButton from "../../components/styledComponents/ArrowButton";
+import Arrow from "../../components/styledComponents/Arrow";
 
 const StyledSingleProduct = styled.div`
   display: flex;
@@ -43,9 +45,9 @@ const StyledSingleProductWrapper1 = styled.div`
   height: 100%;
 `;
 const StyledSingleProductWrapper2 = styled.div`
-flex-basis: 35%;
+  flex-basis: 35%;
   padding: 5px;
-}`;
+`;
 const StyledSingleProductImg = styled.img`
   width: 100%;
   height: 70%;
@@ -59,25 +61,7 @@ const StyledSingleProductPrice = styled.div`
   padding: 10px;
   color: #666;
 `;
-const StyledLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-`;
-const StyledLinkBtn = styled.button`
-  border-radius: 50%;
-  cursor: pointer;
-  outline: none;
-  border: none;
-  background-color: #599ef8;
-  width: 40px;
-  height: 40px;
-  margin: 5px 5px;
-`;
-const StyledArrow = styled.img`
-  width: 20px;
-  height: 20px;
-`;
+
 const StyledLinText = styled.p`
   color: black;
   text-decoration: none;
@@ -92,7 +76,7 @@ const StyledLine = styled(Line)`
     display: none;
   }
 `;
-
+const display = "flex";
 const SingleProduct = (props) => {
   const alert = useAlert();
   const context = useContext(RootContext);
@@ -103,11 +87,11 @@ const SingleProduct = (props) => {
       <StyledSingleProduct>
         <StyledSingleProductWrapper>
           <StyledSingleProductWrapper1>
-            <StyledLink to="/products">
-              <StyledLinkBtn>
-                <StyledArrow src={arrowIcon} alt="go back" />
-              </StyledLinkBtn>
-            </StyledLink>
+            <Link to="/products">
+              <ArrowButton display={display}>
+                <Arrow src={arrowIcon} alt="go back" />
+              </ArrowButton>
+            </Link>
             <h1>{name}</h1>
             <StyledSingleProductImg src={image} alt="singleProduct" />
           </StyledSingleProductWrapper1>
