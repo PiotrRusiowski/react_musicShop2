@@ -248,7 +248,11 @@ const Navbar = () => {
         <StyledHamburgerMenuLinksWrapper isOpen={isHamburgerMenuOpen}>
           <StyledHamburgerMenuLi isVisible={isHamburgerMenuOpen}>
             {isHamburgerMenuOpen ? (
-              <StyledNavbarNavLink exact to="/">
+              <StyledNavbarNavLink
+                exact
+                to="/"
+                onClick={handleHamburgerMenuOpen}
+              >
                 Home
               </StyledNavbarNavLink>
             ) : (
@@ -257,7 +261,11 @@ const Navbar = () => {
           </StyledHamburgerMenuLi>
           <StyledHamburgerMenuLi isVisible={isHamburgerMenuOpen}>
             {isHamburgerMenuOpen ? (
-              <StyledNavbarNavLink exact to="/products">
+              <StyledNavbarNavLink
+                exact
+                to="/products"
+                onClick={handleHamburgerMenuOpen}
+              >
                 Products
               </StyledNavbarNavLink>
             ) : (
@@ -267,7 +275,11 @@ const Navbar = () => {
 
           <StyledHamburgerMenuLi isVisible={isHamburgerMenuOpen}>
             {isHamburgerMenuOpen ? (
-              <StyledNavbarNavLink exact to="/about">
+              <StyledNavbarNavLink
+                onClick={handleHamburgerMenuOpen}
+                exact
+                to="/about"
+              >
                 About
               </StyledNavbarNavLink>
             ) : (
@@ -276,7 +288,11 @@ const Navbar = () => {
           </StyledHamburgerMenuLi>
           <StyledHamburgerMenuLi isVisible={isHamburgerMenuOpen}>
             {isHamburgerMenuOpen ? (
-              <StyledNavbarNavLink exact to="/contact">
+              <StyledNavbarNavLink
+                onClick={handleHamburgerMenuOpen}
+                exact
+                to="/contact"
+              >
                 Contact
               </StyledNavbarNavLink>
             ) : (

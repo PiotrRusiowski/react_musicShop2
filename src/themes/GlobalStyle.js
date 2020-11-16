@@ -20,6 +20,7 @@ p{
 }
 body {
   font-size: 1.6rem;
+  
 }
 .container {
   margin:0 25px ;

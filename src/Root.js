@@ -75,7 +75,6 @@ const Root = () => {
   };
 
   window.addEventListener("scroll", toggleScrollArrowVisibility);
-  // window.addEventListener("scroll", toggleScrollDownVisibility);
 
   const handleHamburgerMenuOpen = () => {
     setIsHamburgerMenuOpen(!isHamburgerMenuOpen);
@@ -92,6 +91,7 @@ const Root = () => {
   useEffect(() => {
     setCartToLocalStorage();
     setCartCounterToLocalStorage();
+    console.log(window.pageXOffset);
   }, [cart, cartCounter]);
 
   const getContentfulData = () => {

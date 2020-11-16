@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Card = styled.li`
+  position: relative;
   flex-basis: 25%;
   margin-bottom: 50px;
   padding: 20px;

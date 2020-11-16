@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./Home.css";
 import RootContext from "../../context/context";
 import phone from "../../assets/icons/footer/phone.svg";
@@ -78,8 +78,8 @@ const StyledFooter = styled.div`
   position: absolute;
   display: flex;
   align-items: center;
-  top: 95%;
-  right: 25px;
+  bottom: 3%;
+  right: 3%;
 `;
 
 const StyledFooterItem = styled.div`
@@ -116,7 +116,7 @@ const StyledPopularSectionWrapper1 = styled.div`
   width: 100%;
   justify-content: space-around;
 `;
-const StyledArrowButtonWrapper = styled.div`
+const StyledSaleButtonWrapper = styled.div`
   /* border: 2px solid black; */
 
   cursor: pointer;
@@ -127,7 +127,7 @@ const StyledArrowButtonWrapper = styled.div`
   bottom: 2%;
   border-radius: 5px;
   padding: 5px 10px;
-  display: "none";
+
   justify-content: center;
   align-items: center;
   display: ${({ isDownVisible }) => (isDownVisible ? "flex" : "none")};
@@ -135,16 +135,44 @@ const StyledArrowButtonWrapper = styled.div`
   :hover {
     box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.75);
   }
+  @media (max-width: 375px) {
+    bottom: 5%;
+    right: 10%;
+  }
+  @media (max-width: 320px) {
+    bottom: 12%;
+    right: 15%;
+  }
 `;
 const boxShadow = "0px 5px 15px 0px rgba(0, 0, 0, 0.75)";
 const bgc = "white";
 const StyledArrowButtonContent = styled.h1`
   padding: 5px 70px;
+  ${({ desktop }) =>
+    desktop &&
+    css`
+      @media (max-width: 712px) {
+        display: none;
+      }
+    `}
+  ${({ mobile }) =>
+    mobile &&
+    css`
+      @media (min-width: 712px) {
+        display: none;
+      }
+      @media (max-width: 712px) {
+        padding: 5px 10px;
+      }
+    `}
 `;
-
+const display = "block";
 const Home = () => {
   const context = useContext(RootContext);
   const { banerImg, popularTodayArray, isScrollDownArrowVisible } = context;
+  useEffect(() => {
+    document.title = "Tech music";
+  }, []);
 
   return (
     <>
@@ -152,35 +180,33 @@ const Home = () => {
         <StyledBaner mobile>
           <StyledBanerImg mobile src={banerImg} alt="audio" />
           <Fade delay={1000}>
-            <StyledArrowButtonWrapper
+            <StyledSaleButtonWrapper
               onClick={() => scroll.scrollToBottom()}
               isDownVisible={isScrollDownArrowVisible}
             >
               <Arrow sale src={downArrow} />
               <Arrow sale src={downArrow} />
-              <StyledArrowButtonContent>
-                Last Day Sale -30%
+              <StyledArrowButtonContent desktop>
+                Last Days Sale -30%
               </StyledArrowButtonContent>
+              <StyledArrowButtonContent mobile>-30%</StyledArrowButtonContent>
               <Arrow sale src={downArrow} />
               <Arrow sale src={downArrow} />
-              {/* <ArrowButton scrollDownButton> */}
-
-              {/* </ArrowButton> */}
-            </StyledArrowButtonWrapper>
+            </StyledSaleButtonWrapper>
 
             <StyledBanerItem>
               <Fade big delay={2000}>
                 <StyledBanerTitle>Tech.Music</StyledBanerTitle>
                 <StyledTitleSmall>authorized shop</StyledTitleSmall>
-                {/* <Link to="/products">
-                  <Button>Products</Button>
-                </Link> */}
               </Fade>
-              {/* <StyledArrowButtonWrapper> */}
-
-              {/* </StyledArrowButtonWrapper> */}
             </StyledBanerItem>
           </Fade>
+          <StyledFooter>
+            <StyledFooterImg src={phone} />
+            <StyledFooterContact>128-319-231</StyledFooterContact>
+            <StyledFooterImg src={email} />
+            <StyledFooterContact>musicshop12333@gmail.com</StyledFooterContact>
+          </StyledFooter>
         </StyledBaner>
         <StyledPopularSection>
           <StyledPopularSectionWrapper1>
@@ -194,6 +220,7 @@ const Home = () => {
               product={popularTodayArray}
               boxShadow={boxShadow}
               bgc={bgc}
+              display={display}
             />
           </Fade>
         </StyledPopularSection>

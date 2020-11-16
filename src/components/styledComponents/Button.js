@@ -34,12 +34,15 @@ const Button = styled.button`
       padding: 0.5rem 2.5rem;
       border-radius: 5px;
       font-size: 13px;
-      /* background-color: ${({ theme }) => theme.lightBlue}; */
+
       background-color: #ffc439;
       border: 1px solid black;
       outline: none;
       transition: 0.3;
       letter-spacing: 0.5px;
+      :hover {
+        background-color: #ffc439;
+      }
     `}
 `;
 export default Button;

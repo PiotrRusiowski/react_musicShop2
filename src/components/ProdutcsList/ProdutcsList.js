@@ -11,7 +11,29 @@ const StyledProductList = styled.ul`
   justify-content: space-around;
 `;
 
-const ProdutcsList = ({ product, hover, boxShadow, bgc }) => {
+const StyledTriangle = styled.div`
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  display: ${({ display }) => display || "none"};
+  border-color: transparent yellow;
+  border-style: solid;
+  border-width: 100px 0px 100px 100px;
+  height: 0px;
+  width: 0px;
+  position: absolute;
+  z-index: 100;
+  top: -60px;
+  right: -10px;
+  transform: rotate(-45deg);
+`;
+const StyledSaleValue = styled.h2`
+  position: absolute;
+  top: -15px;
+  right: 25px;
+  transform: rotate(45deg);
+`;
+const ProdutcsList = ({ product, hover, boxShadow, bgc, display }) => {
   return (
     <>
       <div className="container2">
@@ -34,6 +56,9 @@ const ProdutcsList = ({ product, hover, boxShadow, bgc }) => {
                   boxShadow={boxShadow}
                   bgc={bgc}
                 >
+                  <StyledTriangle display={display}>
+                    <StyledSaleValue>-30%</StyledSaleValue>
+                  </StyledTriangle>
                   <Product
                     name={productName}
                     desc={productDesc}
