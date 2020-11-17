@@ -4,7 +4,7 @@
 
 A simple dynamic shop created with React.js. This project uses React-Router-Dom for navigation, Contentful CMS for dynamically updating the data and Styled Components for layout styles.
 
-### Live demo: https://reactmusicshop.netlify.app/
+### Live demo: musicshop12.netlify.app
 
 ## Main Tech stack:
 
