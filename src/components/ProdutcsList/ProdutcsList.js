@@ -18,20 +18,29 @@ const StyledTriangle = styled.div`
   display: ${({ display }) => display || "none"};
   border-color: transparent yellow;
   border-style: solid;
-  border-width: 100px 0px 100px 100px;
+  border-width: 80px 0px 80px 80px;
   height: 0px;
   width: 0px;
   position: absolute;
   z-index: 100;
-  top: -60px;
+  top: -50px;
   right: -10px;
   transform: rotate(-45deg);
+
+  @media (max-width: 424px) {
+    border-width: 60px 0px 60px 60px;
+    top: -40px;
+  }
 `;
 const StyledSaleValue = styled.h2`
   position: absolute;
   top: -15px;
   right: 25px;
   transform: rotate(45deg);
+
+  @media (max-width: 424px) {
+    right: 10px;
+  }
 `;
 const ProdutcsList = ({ product, hover, boxShadow, bgc, display }) => {
   return (

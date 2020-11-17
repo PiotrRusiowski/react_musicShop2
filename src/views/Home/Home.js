@@ -21,6 +21,7 @@ const StyledBaner = styled.div`
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  box-shadow: 10px 0px 10px 0px rgba(0.5, 0, 0, 0.7);
   ${({ mobile }) =>
     mobile &&
     css`
@@ -135,6 +136,9 @@ const StyledSaleButtonWrapper = styled.div`
   :hover {
     box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.75);
   }
+  @media (max-width: 712px) {
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.75);no
+  }
   @media (max-width: 375px) {
     bottom: 5%;
     right: 10%;
@@ -211,7 +215,9 @@ const Home = () => {
         <StyledPopularSection>
           <StyledPopularSectionWrapper1>
             <Link to="/products">
-              <Button>Click to see all produtsc</Button>
+              <Button onClick={() => scroll.scrollToTop()}>
+                Click to see all produtsc
+              </Button>
             </Link>
           </StyledPopularSectionWrapper1>
 
